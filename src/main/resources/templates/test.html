@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8"/>
+    <title>Form get textarea value - Editor.md examples</title>
+    <link rel="stylesheet" href="lib_web/editor.md/css/editormd.css"/>
+</head>
+<body>
+<div id="layout">
+    <header>
+        <h1>表单取值</h1>
+        <p>Form get textarea value.</p>
+    </header>
+    <form method="post" action="#">
+        <div id="test-editormd">
+            <!-- Custom textarea name attribute <textarea style="display:none;" name="test-textarea-name"> -->
+            <textarea style="display:none;" id="aa"># aa</textarea>
+        </div>
+        <div style="width:90%;margin: 10px auto;">
+            <input type="submit" name="submit" value="提交表单 Submit" style="padding: 5px;"/>
+        </div>
+    </form>
+</div>
+<script src="lib_web/jquery/jquery-3.2.1.js"></script>
+<script src="lib_web/editor.md/editormd.js"></script>
+<script type="text/javascript">
+    /*$(function() {
+        $.get("", function(md) {
+            var testEditor = editormd("test-editormd", {
+                width  : "90%",
+                height : 640,
+                path   : "lib_web/editormd/lib/",
+                appendMarkdown : md,
+                saveHTMLToTextarea : true
+            });
+        });*/
+    editormd("test-editormd", {
+        width: "90%",
+        height: 640,
+        path: "lib_web/editor.md/lib/",
+        saveHTMLToTextarea: true
+    });
+    var value = document.getElementById("aa").value;
+    console.log(value);
+    //testEditor.getMarkdown();       // 获取 Markdown 源码
+    //testEditor.getHTML();           // 获取 Textarea 保存的 HTML 源码
+    //testEditor.getPreviewedHTML();  // 获取预览窗口里的 HTML，在开启 watch 且没有开启 saveHTMLToTextarea 时使用
+</script>
+</body>
+</html>

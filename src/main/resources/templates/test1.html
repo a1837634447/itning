@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kwicks Active/Expanded Classes Example</title>
+    <link rel='stylesheet' type='text/css' href='lib_web/jquery.kwicks/jquery.kwicks.css' />
+    <style type='text/css'>
+        .kwicks {
+            height: 393px;
+            zoom: 1;
+        }
+    </style>
+</head>
+
+<body>
+<ul class='kwicks kwicks-horizontal'>
+    <li><img style="max-width: 770px;" src="views/view_1/img/slide-1.jpg" alt=""></li>
+    <li><img style="max-width: 770px;" src="views/view_1/img/slide-2.jpg" alt=""></li>
+    <li><img style="max-width: 770px;" src="views/view_1/img/slide-3.jpg" alt=""></li>
+    <li><img style="max-width: 770px;" src="views/view_1/img/slide-4.jpg" alt=""></li>
+</ul>
+
+<script src='lib_web/jquery/jquery-3.2.1.js' type='text/javascript'></script>
+<script src='lib_web/jquery.kwicks/jquery.kwicks.js' type='text/javascript'></script>
+
+<script type='text/javascript'>
+    $(function() {
+        $('.kwicks').kwicks({
+            maxSize : 770,
+            behavior: 'menu',
+            spacing:0,
+            deselectOnClick: true
+        });
+    });
+</script>
+</body>
+</html>

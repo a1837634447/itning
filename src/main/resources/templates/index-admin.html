@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-ng-app="myApp">
+<head>
+    <title>Ning!后台管理.</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <meta name="description" content="一个分享技术和个人见解的网站...">
+    <meta name="keywords" content="Ning, 个人网站, JAVA, 前端">
+    <meta name="author" content="Ning">
+    <!-- Bootstrap -->
+    <link href="lib_web/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" id="default-color" href="#">Ning! 后台管理</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right hidden-md hidden-lg hidden-sm">
+                <li><a href="#!/in_theaters">正在热映</a></li>
+                <li><a href="#!/coming_soon">即将上映</a></li>
+                <li><a href="#!/top250">Top 250</a></li>
+            </ul>
+            <form class="navbar-form navbar-right"  ng-submit="search_sub()">
+                <input type="text" class="form-control" placeholder="搜索..." ng-model="text">
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar" ng-controller="classController">
+                <li ng-class="{active:$location.path().substr(0,2)=='/i'}" class="active"><a href="#!/in_theaters">正在热映<span
+                        class="sr-only">(current)</span></a></li>
+                <li ng-class="{active:$location.path().substr(0,2)=='/c'}"><a href="#!/coming_soon">即将上映</a></li>
+                <li ng-class="{active:$location.path().substr(0,2)=='/t'}"><a href="#!/top250">Top 250</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main table-responsive" ng-view></div>
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="lib_web/jquery/jquery-3.2.1.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="lib_web/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="lib_web/angular/angular.js"></script>
+<script type="text/javascript" src="lib_web/angular/angular-route.js"></script>
+<script>
+    'use strict';
+    var app = angular.module('myApp', ['ngRoute']);
+
+    /*路由*/
+    app.config(['$routeProvider', function ($routeProvider) {
+        $routeProvider.when('/error', {
+            controller: 'view_error_Controller',
+            templateUrl: 'views/view_error/view_error.html'
+        }).when('/login', {
+            controller: 'login_Controller',
+            templateUrl: 'views/admin/login/login.html'
+        }).when('/aa', {
+            controller: 'view_error_Controller',
+            templateUrl: 'views/view_error/view_error.html'
+        }).otherwise({redirectTo: '/login'});
+    }]);
+    /*/路由*/
+
+    /*服务*/
+    app.service('MainService', [function () {
+
+    }]);
+    /*/服务*/
+
+    /*控制器*/
+    app.controller('classController', ['$scope', '$location', function ($scope, $location) {
+        $scope.$location = $location;
+    }]);
+
+    app.controller('view_error_Controller', ['$scope', function ($scope) {
+
+    }]);
+
+    app.controller('login_Controller', ['$scope', function ($scope) {
+
+    }]);
+    /*/控制器*/
+</script>
+<script id="index_view" type="text/ng-template">
+
+</script>
+<script type="text/javascript">if ($(window).width() > 767) {
+    document.write("<" + "script  type='text/javascript' color='242,92,39' opacity='0.7' zIndex='-2' count='100' src='//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js'></" + "script>");
+}</script>
+</body>
+</html>
