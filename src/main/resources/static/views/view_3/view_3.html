@@ -4,84 +4,37 @@
         <!--文章区-->
         <div class="pull-left div_width">
             <ul>
-                <li class="pull-left">
+                <li data-ng-repeat="blog_ in blog" class="pull-left" data-type="{{blog_.type.name}}">
                     <section class="article_padding">
-                        <img class="img-rounded pull-left blog_img" data-ng-src="views/view_3/img/4.jpg" alt="">
-                        <div class="time_style pull-left" style="margin-left: 1em">
-                            <h2 class="title_style">文章标文章标题文章标题文章标题文章章题</h2>
-                            <span class="glyphicon glyphicon-calendar"></span>&nbsp;<span class="blog_color">2017.09.19&nbsp;|</span>
-                            <span class="glyphicon glyphicon-user"></span>&nbsp;<span class="defaut_color">Ning</span>
-                            <p class="blog_color" style="padding: 0.5em 0">文章内容文章内容文章内容文章内容文章章内容文章内容</p>
-                        </div>
-                    </section>
-                </li>
-                <li class="pull-left">
-                    <section class="article_padding">
-                        <img class="img-rounded pull-left blog_img" data-ng-src="views/view_3/img/4.jpg" alt="">
-                        <div class="time_style pull-left" style="margin-left: 1em">
-                            <h2 class="title_style">文章标文章标题文章标题文章标题文章章题</h2>
-                            <span class="glyphicon glyphicon-calendar"></span>&nbsp;<span class="blog_color">2017.09.19&nbsp;|</span>
-                            <span class="glyphicon glyphicon-user"></span>&nbsp;<span class="defaut_color">Ning</span>
-                            <p class="blog_color" style="padding: 0.5em 0">文章内容文章内容文章内容文章内容文章章内容文章内容</p>
-                        </div>
-                    </section>
-                </li>
-                <li class="pull-left">
-                    <section class="article_padding">
-                        <img class="img-rounded pull-left blog_img" data-ng-src="views/view_3/img/4.jpg" alt="">
-                        <div class="time_style pull-left" style="margin-left: 1em">
-                            <h2 class="title_style">文章标文章标题文章标题文章标题文章章题</h2>
-                            <span class="glyphicon glyphicon-calendar"></span>&nbsp;<span class="blog_color">2017.09.19&nbsp;|</span>
-                            <span class="glyphicon glyphicon-user"></span>&nbsp;<span class="defaut_color">Ning</span>
-                            <p class="blog_color" style="padding: 0.5em 0">文章内容文章内容文章内容文章内容文章章内容文章内容</p>
-                        </div>
-                    </section>
-                </li>
-                <li class="pull-left">
-                    <section class="article_padding">
-                        <img class="img-rounded pull-left blog_img" data-ng-src="views/view_3/img/4.jpg" alt="">
-                        <div class="time_style pull-left" style="margin-left: 1em">
-                            <h2 class="title_style">文章标文章标题文章标题文章标题文章章题</h2>
-                            <span class="glyphicon glyphicon-calendar"></span>&nbsp;<span class="blog_color">2017.09.19&nbsp;|</span>
-                            <span class="glyphicon glyphicon-user"></span>&nbsp;<span class="defaut_color">Ning</span>
-                            <p class="blog_color" style="padding: 0.5em 0">文章内容文章内容文章内容文章内容文章章内容文章内容</p>
-                        </div>
-                    </section>
-                </li>
-                <li class="pull-left">
-                    <section class="article_padding">
-                        <img class="img-rounded pull-left blog_img" data-ng-src="views/view_3/img/4.jpg" alt="">
-                        <div class="time_style pull-left" style="margin-left: 1em">
-                            <h2 class="title_style">文章标文章标题文章标题文章标题文章章题</h2>
-                            <span class="glyphicon glyphicon-calendar"></span>&nbsp;<span class="blog_color">2017.09.19&nbsp;|</span>
-                            <span class="glyphicon glyphicon-user"></span>&nbsp;<span class="defaut_color">Ning</span>
-                            <p class="blog_color" style="padding: 0.5em 0">文章内容文章内容文章内容文章内容文章章内容文章内容</p>
-                        </div>
-                    </section>
-                </li>
-                <li class="pull-left">
-                    <section class="article_padding">
-                        <img class="img-rounded pull-left blog_img" data-ng-src="views/view_3/img/4.jpg" alt="">
-                        <div class="time_style pull-left" style="margin-left: 1em">
-                            <h2 class="title_style">文章标文章标题文章标题文章标题文章章题</h2>
-                            <span class="glyphicon glyphicon-calendar"></span>&nbsp;<span class="blog_color">2017.09.19&nbsp;|</span>
-                            <span class="glyphicon glyphicon-user"></span>&nbsp;<span class="defaut_color">Ning</span>
-                            <p class="blog_color" style="padding: 0.5em 0">文章内容文章内容文章内容文章内容文章章内容文章内容</p>
-                        </div>
-                    </section>
-                </li>
-                <li class="pull-left">
-                    <section class="article_padding">
-                        <img class="img-rounded pull-left blog_img" data-ng-src="views/view_3/img/4.jpg" alt="">
-                        <div class="time_style pull-left" style="margin-left: 1em">
-                            <h2 class="title_style">文章标文章标题文章标题文章标题文章章题</h2>
-                            <span class="glyphicon glyphicon-calendar"></span>&nbsp;<span class="blog_color">2017.09.19&nbsp;|</span>
-                            <span class="glyphicon glyphicon-user"></span>&nbsp;<span class="defaut_color">Ning</span>
-                            <p class="blog_color" style="padding: 0.5em 0">文章内容文章内容文章内容文章内容文章章内容文章内容</p>
+                        <img class="img-rounded pull-left blog_img" data-ng-src="{{blog_.imgSrc}}" alt="{{blog_.imgAlt}}">
+                        <div class="time_style pull-left" style="padding-top: 6px;margin-left: 1em">
+                            <h2 class="title_style">{{blog_.aTitle}}</h2>
+                            <span class="glyphicon glyphicon-calendar"></span>&nbsp;<span class="blog_color">{{blog_.date | date:'yyyy-MM-dd'}}&nbsp;|</span>
+                            <span class="glyphicon glyphicon-user"></span>&nbsp;<span class="defaut_color">{{blog_.author}}</span>
+                            <p class="blog_color blog_md">{{blog_.md | limitTo:100}}</p>
                         </div>
                     </section>
                 </li>
             </ul>
+            <nav aria-label="Page navigation" class="text-style">
+                <ul class="mypagination">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
         <!--导航区-->
         <div class="pull-left archive_style">
@@ -89,14 +42,8 @@
                 <div>
                     <h3 class="title_style">分类：</h3>
                     <ul class="text_padding">
-                        <li><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;<a
-                                class="title_style blog_color" href="">前端</a></li>
-                        <li><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;<a
-                                class="title_style blog_color" href="">后端</a></li>
-                        <li><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;<a
-                                class="title_style blog_color" href="">随笔</a></li>
-                        <li><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;<a
-                                class="title_style blog_color" href="">备忘</a></li>
+                        <li data-ng-repeat="type_ in type"><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;<a
+                                class="title_style blog_color" data-ng-href="{{type_.href}}">{{type_.name}}</a></li>
                     </ul>
                 </div>
                 <div class="blog_p_top">
@@ -112,12 +59,6 @@
                                 class="title_style blog_color" href="">2016年01月</a></li>
                     </ul>
                     <ul class="text_padding pull-left ul_2_margen-left">
-                        <li><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;<a
-                                class="title_style blog_color" href="">2016年01月</a></li>
-                        <li><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;<a
-                                class="title_style blog_color" href="">2016年01月</a></li>
-                        <li><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;<a
-                                class="title_style blog_color" href="">2016年01月</a></li>
                         <li><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;<a
                                 class="title_style blog_color" href="">2016年01月</a></li>
                     </ul>

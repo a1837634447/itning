@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-ng-app="myApp">
+<html lang="zh-CN" data-ng-app="itning">
 <head>
     <title>Ning!一个分享技术和个人见解的网站...</title>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0"/>
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
     <meta name="description" content="一个分享技术和个人见解的网站..."/>
     <meta name="keywords" content="Ning, 个人网站, JAVA, 前端"/>
     <meta name="author" content="Ning"/>
-    <!-- Bootstrap -->
     <link href="lib_web/bootstrap/css/bootstrap.css" rel="stylesheet"/>
     <link href="css/main.css" rel="stylesheet"/>
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+        [ng-cloak], .ng-cloak {
+            display: none;
+        }
+    </style>
 </head>
 
-<body>
+<body class="ng-cloak" data-ng-controller="indexFrameWork_Controller">
 <!--nav start-->
 <nav class="navbar navbar-inverse clean_navbar_style" role="navigation">
     <div class="container">
@@ -38,19 +39,7 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="//github.com/a1837634447" rel="noopener">GitHub</a></li>
-                <li><a href="//blog.csdn.net/a1837634447" rel="noopener">CSDN Blog</a></li>
-                <li class="dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Another<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#!/error">a</a></li>
-                        <li><a href="#">b</a></li>
-                        <li><a href="#">c</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">d</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">e</a></li>
-                    </ul>
+                <li data-ng-repeat="navbar_ in navbar"><a data-ng-href="{{navbar_.href}}" rel="noopener">{{navbar_.title}}</a>
                 </li>
             </ul>
         </div>
@@ -58,28 +47,28 @@
 </nav>
 <!--nav end-->
 <!-- header start -->
-<header class="defaut_background_color" data-ng-controller="classController">
+<header class="defaut_background_color">
     <div class="container header_size">
         <h1 class="header_logo">
             <a href="#!/view1"><img class="header_logo_img" style="width: 8em;" src="img/logo.png" alt="logo"/></a>
         </h1>
         <div class="header_a hidden-xs">
-            <a href="#!/view_1" class="a_style" data-ng-class="{btn:1,active_now:$location.path()=='/view_1'}">主页</a>
-            <a href="#!/view_2" class="a_style" data-ng-class="{btn:1,active_now:$location.path()=='/view_2'}">学习</a>
-            <a href="#!/view_3" class="a_style" data-ng-class="{btn:1,active_now:$location.path()=='/view_3'}">博客</a>
-            <a href="#!/view_4" class="a_style" data-ng-class="{btn:1,active_now:$location.path()=='/view_4'}">项目</a>
-            <a href="#!/view_5" class="a_style" data-ng-class="{btn:1,active_now:$location.path()=='/view_5'}">关于</a>
+            <a href="#!/view_1" class="a_style" data-ng-class="{btn:1,active_now:$location.path()=='/view_1'}">{{viewTitle[0]}}</a>
+            <a href="#!/view_2" class="a_style" data-ng-class="{btn:1,active_now:$location.path()=='/view_2'}">{{viewTitle[1]}}</a>
+            <a href="#!/view_3" class="a_style" data-ng-class="{btn:1,active_now:$location.path()=='/view_3'}">{{viewTitle[2]}}</a>
+            <a href="#!/view_4" class="a_style" data-ng-class="{btn:1,active_now:$location.path()=='/view_4'}">{{viewTitle[3]}}</a>
+            <a href="#!/view_5" class="a_style" data-ng-class="{btn:1,active_now:$location.path()=='/view_5'}">{{viewTitle[4]}}</a>
         </div>
         <div class="hidden-sm hidden-md hidden-lg position_relative">
             <a class="btn menu_button" data-toggle="collapse" data-target=".nav-collapse_">Menu <span
                     class="glyphicon glyphicon-chevron-down"></span> </a>
             <div class="nav-collapse nav-collapse_ collapse menu_ul" style="height: auto;">
                 <ul class="nav text-center">
-                    <li><a href="#!/view_1">主页</a></li>
-                    <li><a href="#!/view_2">学习</a></li>
-                    <li><a href="#!/view_3">博客</a></li>
-                    <li><a href="#!/view_4">项目</a></li>
-                    <li><a href="#!/view_5">关于</a></li>
+                    <li><a href="#!/view_1">{{viewTitle[0]}}</a></li>
+                    <li><a href="#!/view_2">{{viewTitle[1]}}</a></li>
+                    <li><a href="#!/view_3">{{viewTitle[2]}}</a></li>
+                    <li><a href="#!/view_4">{{viewTitle[3]}}</a></li>
+                    <li><a href="#!/view_5">{{viewTitle[4]}}</a></li>
                 </ul>
             </div>
         </div>
@@ -91,7 +80,7 @@
 <footer>
     <div class="container clearfix">
         <div class="pull-right privacy">
-            <a href="" rel="noopener">QQ</a> |
+            <a target="_blank" href="//wpa.qq.com/msgrd?v=3&uin=3579677768&site=qq&menu=yes" rel="noopener">QQ</a> |
             <a href="mailto:1837634447@qq.com">E-mail</a>
         </div>
         <div class="privacy pull-left">© 2017 | <a href="//itning.cn" rel="noopener">itning.cn</a> | <a
@@ -100,17 +89,15 @@
         </div>
     </div>
 </footer>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="lib_web/jquery/jquery-3.2.1.js"></script>
-<script src='lib_web/jquery.kwicks/jquery.kwicks.js' type='text/javascript'></script>
+<script data-ng-src='lib_web/jquery.kwicks/jquery.kwicks.js' type='text/javascript'></script>
 <script src="js/main.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="lib_web/bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="lib_web/angular/angular.js"></script>
 <script type="text/javascript" src="lib_web/angular/angular-route.js"></script>
 <script>
     'use strict';
-    var app = angular.module('myApp', ['ngRoute']);
+    var app = angular.module('itning', ['ngRoute']);
 
     /*路由*/
     app.config(['$routeProvider', function ($routeProvider) {
@@ -143,11 +130,23 @@
     /*/服务*/
 
     /*控制器*/
-    app.controller('classController', ['$scope', '$location', function ($scope, $location) {
+    app.controller('indexFrameWork_Controller', ['$scope', '$http', '$location', '$log', function ($scope, $http, $location, $log) {
         $scope.$location = $location;
+        $scope.navbar = [];
+        $scope.viewTitle = [];
+        $http.get('/getIndexFrameWorkData').then(function (response) {
+            if (response.status === 200) {
+                $scope.navbar = response.data.navbarList;
+                $scope.viewTitle = response.data.viewTitle;
+            } else {
+                $log.error("indexFrameWork_Controller.$http.get.response.status:" + response.status + "text:" + response.statusText);
+            }
+        }, function (err) {
+            $log.error(err);
+        });
     }]);
-    app.controller('view_1_Controller', ['$scope', function ($scope) {
-        $scope.$on("$viewContentLoaded", function () {
+    app.controller('view_1_Controller', ['$scope', '$http', function ($scope, $http) {
+        /*$scope.$on("$viewContentLoaded", function () {
             console.log("ng-view content loaded!");
         });
 
@@ -158,13 +157,43 @@
         $scope.$on("$routeChangeSuccess", function (event, next, current) {
             //event.preventDefault(); //cancel url change
             console.log("route change Success!");
+        });*/
+        $scope.carousel = [];
+        $http.get('/getCarouselData').then(function (response) {
+            if (response.status === 200) {
+                $scope.carousel = response.data;
+            } else {
+                $log.error("view_1_Controller.$http.get.response.status:" + response.status + "text:" + response.statusText);
+            }
+        }, function (err) {
+            $log.error(err);
         });
-
     }]);
     app.controller('view_2_Controller', ['$scope', function ($scope) {
 
     }]);
-    app.controller('view_3_Controller', ['$scope', function ($scope) {
+    app.controller('view_3_Controller', ['$scope','$http', function ($scope,$http) {
+        $scope.type = [];
+        $scope.blog = [];
+        $http.get('/getBlogTypeData').then(function (response) {
+            if (response.status === 200) {
+                $scope.type = response.data;
+            } else {
+                $log.error("view_3_Controller.$http.get.response.status:" + response.status + "text:" + response.statusText);
+            }
+        }, function (err) {
+            $log.error(err);
+        });
+
+        $http.get('/getBlogData').then(function (response) {
+            if (response.status === 200) {
+                $scope.blog = response.data.content;
+            } else {
+                $log.error("view_3_Controller.$http.get.response.status:" + response.status + "text:" + response.statusText);
+            }
+        }, function (err) {
+            $log.error(err);
+        });
 
     }]);
     app.controller('view_4_Controller', ['$scope', function ($scope) {
@@ -181,8 +210,9 @@
 <script id="index_view" type="text/ng-template">
 
 </script>
-<!--
-<script type="text/javascript">if($(window).width()>767){document.write("<"+"script  type='text/javascript' color='242,92,39' opacity='0.7' zIndex='-2' count='100' src='//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js'></"+"script>");}</script>
--->
+<!--<script type="text/javascript">if ($(window).width() > 767) {
+    document.write("<" + "script  type='text/javascript' color='242,92,39' opacity='0.7' zIndex='-2' count='100' src='//cdn.staticfile.org/canvas-nest.js/1.0.1/canvas-nest.min.js'></" + "script>");
+}</script>-->
+
 </body>
 </html>
