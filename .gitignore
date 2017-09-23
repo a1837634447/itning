@@ -27,5 +27,4 @@ nbdist/
 .mvn/
 mvnw
 mvnw.cmd
-pom.xml
 src/main/resources/static/lib_web/angular/angular.js
