@@ -46,4 +46,9 @@ public class IndexFrameWork {
     public Index getIndexFrameWorkData() {
         return indexService.getIndexEntity();
     }
+
+    @RequestMapping("/admin")
+    public String admin() {
+        return "index-admin";
+    }
 }

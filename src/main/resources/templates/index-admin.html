@@ -13,7 +13,7 @@
     <meta name="author" content="Ning">
     <!-- Bootstrap -->
     <link href="lib_web/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="./css/dashboard.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -23,28 +23,30 @@
 </head>
 
 <body>
-<body>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" id="default-color" href="#">Ning! 后台管理</a>
+            <a class="navbar-brand" href="#">Ning！后台管理系统</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right hidden-md hidden-lg hidden-sm">
-                <li><a href="#!/in_theaters">正在热映</a></li>
-                <li><a href="#!/coming_soon">即将上映</a></li>
-                <li><a href="#!/top250">Top 250</a></li>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">框架管理</a></li>
+                <li><a href="#">视图一设置</a></li>
+                <li><a href="#">视图二设置</a></li>
+                <li class="active"><a href="#">视图三设置</a></li>
+                <li><a href="#">视图四设置</a></li>
+                <li><a href="#">视图五设置</a></li>
+                <li><a href="#">博客发布</a></li>
             </ul>
-            <form class="navbar-form navbar-right"  ng-submit="search_sub()">
-                <input type="text" class="form-control" placeholder="搜索..." ng-model="text">
+            <form class="navbar-form navbar-right">
+                <input type="text" class="form-control" placeholder="Search...">
             </form>
         </div>
     </div>
@@ -53,14 +55,24 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar" ng-controller="classController">
-                <li ng-class="{active:$location.path().substr(0,2)=='/i'}" class="active"><a href="#!/in_theaters">正在热映<span
-                        class="sr-only">(current)</span></a></li>
-                <li ng-class="{active:$location.path().substr(0,2)=='/c'}"><a href="#!/coming_soon">即将上映</a></li>
-                <li ng-class="{active:$location.path().substr(0,2)=='/t'}"><a href="#!/top250">Top 250</a></li>
+            <ul class="nav nav-sidebar">
+                <li><a href="#">框架管理 <span class="sr-only">框架管理</span></a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="#">视图一设置</a></li>
+                <li><a href="#">视图二设置</a></li>
+                <li class="active"><a href="#">视图三设置</a></li>
+                <li><a href="#">视图四设置</a></li>
+                <li><a href="#">视图五设置</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="#">博客发布</a></li>
             </ul>
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main table-responsive" ng-view></div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" data-ng-view="">
+            <!--内容-->
+
+        </div>
     </div>
 </div>
 
@@ -70,22 +82,30 @@
 <script src="lib_web/bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="lib_web/angular/angular.js"></script>
 <script type="text/javascript" src="lib_web/angular/angular-route.js"></script>
+
+<script src="lib_web/editormd/lib/marked.min.js"></script>
+<script src="lib_web/editormd/lib/prettify.min.js"></script>
+<script src="lib_web/editormd/lib/raphael.min.js"></script>
+<script src="lib_web/editormd/lib/underscore.min.js"></script>
+<script src="lib_web/editormd/lib/sequence-diagram.min.js"></script>
+<script src="lib_web/editormd/lib/flowchart.min.js"></script>
+<script src="lib_web/editormd/lib/jquery.flowchart.min.js"></script>
+
+
+<script src="lib_web/editormd/editormd.js"></script>
 <script>
     'use strict';
     var app = angular.module('myApp', ['ngRoute']);
 
     /*路由*/
     app.config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/error', {
-            controller: 'view_error_Controller',
-            templateUrl: 'views/view_error/view_error.html'
-        }).when('/login', {
-            controller: 'login_Controller',
-            templateUrl: 'views/admin/login/login.html'
-        }).when('/aa', {
-            controller: 'view_error_Controller',
-            templateUrl: 'views/view_error/view_error.html'
-        }).otherwise({redirectTo: '/login'});
+        $routeProvider.when('/view_3_manage', {
+            controller: 'view_3_manage_Controller',
+            templateUrl: 'views/admin/view_3/view_3.html'
+        }).when('/test', {
+            controller: 'testC',
+            templateUrl: 'views/admin/testview/test.html'
+        }).otherwise({redirectTo: '/view_3_manage'});
     }]);
     /*/路由*/
 
@@ -100,20 +120,25 @@
         $scope.$location = $location;
     }]);
 
-    app.controller('view_error_Controller', ['$scope', function ($scope) {
-
+    app.controller('view_3_manage_Controller', ['$scope', function ($scope) {
+        $scope.submit=function () {
+            var value = angular.element("#md_textarea").val();
+            console.log(value);
+        };
     }]);
 
-    app.controller('login_Controller', ['$scope', function ($scope) {
+    app.controller('testC', ['$scope', function ($scope) {
+        $scope.submit=function () {
 
+        };
     }]);
     /*/控制器*/
 </script>
 <script id="index_view" type="text/ng-template">
 
 </script>
-<script type="text/javascript">if ($(window).width() > 767) {
-    document.write("<" + "script  type='text/javascript' color='242,92,39' opacity='0.7' zIndex='-2' count='100' src='//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js'></" + "script>");
-}</script>
+<!--<script type="text/javascript">if ($(window).width() > 767) {
+    document.write("<" + "script  type='text/javascript' color='66,139,202' opacity='0.7' zIndex='-2' count='100' src='//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js'></" + "script>");
+}</script>-->
 </body>
 </html>
