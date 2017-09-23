@@ -2,6 +2,7 @@ package com.ning.itning.service;
 
 import com.ning.itning.entity.view_3.Archiving;
 import com.ning.itning.entity.view_3.Blog;
+import com.ning.itning.entity.view_3.Blogs;
 import com.ning.itning.entity.view_3.Type;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,4 +23,6 @@ public interface View_3_Service {
     List<Archiving> getArchivingEntity();
 
     Page<Blog> getBlogEntity(Integer page, Integer size);
+
+    Blogs getBlogEntityByType(String typeId, Integer page, Integer size);
 }

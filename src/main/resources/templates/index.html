@@ -53,11 +53,11 @@
             <a href="#!/view1"><img class="header_logo_img" style="width: 8em;" src="img/logo.png" alt="logo"/></a>
         </h1>
         <div class="header_a hidden-xs">
-            <a href="#!/view_1" class="a_style" data-ng-class="{btn:1,active_now:$location.path()=='/view_1'}">{{viewTitle[0]}}</a>
-            <a href="#!/view_2" class="a_style" data-ng-class="{btn:1,active_now:$location.path()=='/view_2'}">{{viewTitle[1]}}</a>
-            <a href="#!/view_3" class="a_style" data-ng-class="{btn:1,active_now:$location.path()=='/view_3'}">{{viewTitle[2]}}</a>
-            <a href="#!/view_4" class="a_style" data-ng-class="{btn:1,active_now:$location.path()=='/view_4'}">{{viewTitle[3]}}</a>
-            <a href="#!/view_5" class="a_style" data-ng-class="{btn:1,active_now:$location.path()=='/view_5'}">{{viewTitle[4]}}</a>
+            <a href="#!/view_1" class="a_style" data-ng-class="{btn:1,active_now:$location.path().substr(0,7)=='/view_1'}">{{viewTitle[0]}}</a>
+            <a href="#!/view_2" class="a_style" data-ng-class="{btn:1,active_now:$location.path().substr(0,7)=='/view_2'}">{{viewTitle[1]}}</a>
+            <a href="#!/view_3/all" class="a_style" data-ng-class="{btn:1,active_now:$location.path().substr(0,7)=='/view_3'}">{{viewTitle[2]}}</a>
+            <a href="#!/view_4" class="a_style" data-ng-class="{btn:1,active_now:$location.path().substr(0,7)=='/view_4'}">{{viewTitle[3]}}</a>
+            <a href="#!/view_5" class="a_style" data-ng-class="{btn:1,active_now:$location.path().substr(0,7)=='/view_5'}">{{viewTitle[4]}}</a>
         </div>
         <div class="hidden-sm hidden-md hidden-lg position_relative">
             <a class="btn menu_button" data-toggle="collapse" data-target=".nav-collapse_">Menu <span
@@ -107,7 +107,7 @@
         }).when('/view_2', {
             controller: 'view_2_Controller',
             templateUrl: 'views/view_2/view_2.html'
-        }).when('/view_3/:page?', {
+        }).when('/view_3/:type/:page?', {
             controller: 'view_3_Controller',
             templateUrl: 'views/view_3/view_3.html'
         }).when('/view_4', {
@@ -172,15 +172,22 @@
     app.controller('view_2_Controller', ['$scope', function ($scope) {
 
     }]);
-    app.controller('view_3_Controller', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
+    app.controller('view_3_Controller', ['$scope', '$http', '$routeParams', '$log', function ($scope, $http, $routeParams, $log) {
         $scope.type = [];
         $scope.blog = [];
         $scope.page = 1;
+        $scope.nowType = "all";
         var page = $routeParams['page'] ? $routeParams['page'] : 1;
+        var n_type = $routeParams['type'];
         if (parseInt(page) < 1) {
             page = 1;
         }
         $scope.page = (parseInt(page));
+        var url = '/getBlogData?page=' + (parseInt(page) - 1);
+        if (n_type !== "all") {
+            $scope.nowType = n_type;
+            url = '/getBlogEntityByType?type=' + n_type + '&page=' + page;
+        }
         $http.get('/getBlogTypeData').then(function (response) {
             if (response.status === 200) {
                 $scope.type = response.data;
@@ -191,7 +198,7 @@
             $log.error(err);
         });
 
-        $http.get('/getBlogData?page=' + (parseInt(page) - 1)).then(function (response) {
+        $http.get(url).then(function (response) {
             if (response.status === 200) {
                 $scope.first = response.data.first;
                 $scope.last = response.data.last;
@@ -203,7 +210,6 @@
         }, function (err) {
             $log.error(err);
         });
-
     }]);
     app.controller('view_4_Controller', ['$scope', function ($scope) {
 

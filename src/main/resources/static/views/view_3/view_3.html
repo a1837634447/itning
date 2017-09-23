@@ -1,6 +1,9 @@
 <link data-ng-href="views/view_3/css/view_3.css" rel="stylesheet">
 <div class="blog_background_color">
     <div class="container blog_p_top position_relative">
+        <div>
+            <h1 style="padding: 5px;">{{nowType=='all'?'所有文章：':blog[0].type.name+'：'}}</h1>
+        </div>
         <!--文章区-->
         <div class="pull-left div_width">
             <ul>
@@ -12,7 +15,7 @@
                             <h2 class="title_style">{{blog_.aTitle}}</h2>
                             <span class="glyphicon glyphicon-calendar"></span>&nbsp;<span class="blog_color">{{blog_.date | date:'yyyy-MM-dd'}}&nbsp;|</span>
                             <span class="glyphicon glyphicon-user"></span>&nbsp;<span class="defaut_color">{{blog_.author}}</span>
-                            <p class="blog_color blog_md">{{blog_.md | limitTo:100}}</p>
+                            <p class="blog_color blog_md">{{blog_.md | limitTo:100}}......</p>
                         </div>
                     </section>
                 </li>
@@ -20,17 +23,19 @@
             <nav aria-label="Page navigation" class="text-style">
                 <ul class="mypagination">
                     <li>
-                        <a data-ng-hide="first" data-ng-href="#!/view_3/{{page-1}}" aria-label="Previous">
+                        <a data-ng-hide="first" data-ng-href="#!/view_3/{{nowType}}/{{page-1}}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <li data-ng-class="{active:page==1}"><a href="#!/view_3/1">1</a></li>
-                    <li data-ng-class="{active:page===2}"><a href="#!/view_3/2">2</a></li>
+                    <li data-ng-class="{active:page==1}"><a href="#!/view_3/{{nowType}}/1">1</a></li>
+                    <li data-ng-class="{active:page===2}"><a href="#!/view_3/{{nowType}}/{{totalPages===1?1:2}}">{{totalPages===1?'...':2}}</a></li>
                     <li data-ng-class="{active:page>2&&page<totalPages-1}"><a href="">...</a></li>
-                    <li data-ng-class="{active:page===totalPages-1}"><a href="#!/view_3/{{totalPages-1}}">{{totalPages-1}}</a></li>
-                    <li data-ng-class="{active:page===totalPages}"><a href="#!/view_3/{{totalPages}}">{{totalPages}}</a></li>
+                    <li data-ng-class="{active:page===totalPages-1}"><a href="#!/view_3/{{nowType}}/{{totalPages===1?1:totalPages-1}}">{{totalPages===1?'...':totalPages-1}}</a>
+                    </li>
+                    <li data-ng-class="{active:page===totalPages&&totalPages!==1}"><a href="#!/view_3/{{nowType}}/{{totalPages}}">{{totalPages===1?'...':totalPages}}</a>
+                    </li>
                     <li>
-                        <a data-ng-hide="last" data-ng-href="#!/view_3/{{page+1}}" aria-label="Next">
+                        <a data-ng-hide="last" data-ng-href="#!/view_3/{{nowType}}/{{page+1}}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
@@ -43,8 +48,10 @@
                 <div>
                     <h3 class="title_style">分类：</h3>
                     <ul class="text_padding">
+                        <li><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;<a
+                                class="title_style blog_color" data-ng-href="#!/view_3/all">所有文章</a></li>
                         <li data-ng-repeat="type_ in type"><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;<a
-                                class="title_style blog_color" data-ng-href="{{type_.href}}">{{type_.name}}</a></li>
+                                class="title_style blog_color" data-ng-href="#!/view_3/{{type_.id}}">{{type_.name}}</a></li>
                     </ul>
                 </div>
                 <div class="blog_p_top">
