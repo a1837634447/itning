@@ -2,6 +2,10 @@ a:hover {
     color: #F25C27;
 }
 
+.disabled a:hover {
+    cursor: not-allowed;
+}
+
 @media (max-width: 767px) {
     .blog_img {
         width: 100%;

@@ -27,12 +27,12 @@
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <li data-ng-class="{active:page==1}"><a href="#!/view_3/{{nowType}}/1">1</a></li>
-                    <li data-ng-class="{active:page===2}"><a href="#!/view_3/{{nowType}}/{{totalPages===1?1:2}}">{{totalPages===1?'...':2}}</a></li>
-                    <li data-ng-class="{active:page>2&&page<totalPages-1}"><a href="">...</a></li>
-                    <li data-ng-class="{active:page===totalPages-1}"><a href="#!/view_3/{{nowType}}/{{totalPages===1?1:totalPages-1}}">{{totalPages===1?'...':totalPages-1}}</a>
+                    <li data-ng-class="{active:page==1,disabled:page===1}"><a href="#!/view_3/{{nowType}}/1">1</a></li>
+                    <li data-ng-class="{active:page===2,disabled:page===2||totalPages===1}"><a href="#!/view_3/{{nowType}}/{{totalPages===1?1:2}}">{{totalPages===1?'...':2}}</a></li>
+                    <li class="disabled" data-ng-class="{active:page>2&&page<totalPages-1}"><a href="">...</a></li>
+                    <li data-ng-class="{active:page===totalPages-1,disabled:page===totalPages-1||totalPages===1}"><a href="#!/view_3/{{nowType}}/{{totalPages===1?1:totalPages-1}}">{{totalPages===1?'...':totalPages-1}}</a>
                     </li>
-                    <li data-ng-class="{active:page===totalPages&&totalPages!==1}"><a href="#!/view_3/{{nowType}}/{{totalPages}}">{{totalPages===1?'...':totalPages}}</a>
+                    <li data-ng-class="{active:page===totalPages&&totalPages!==1,disabled:page===totalPages&&totalPages!==1||totalPages===1}"><a href="#!/view_3/{{nowType}}/{{totalPages}}">{{totalPages===1?'...':totalPages}}</a>
                     </li>
                     <li>
                         <a data-ng-hide="last" data-ng-href="#!/view_3/{{nowType}}/{{page+1}}" aria-label="Next">
