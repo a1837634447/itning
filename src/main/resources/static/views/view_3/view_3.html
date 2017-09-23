@@ -7,7 +7,7 @@
                 <li data-ng-repeat="blog_ in blog" class="pull-left" data-type="{{blog_.type.name}}">
                     <section class="article_padding">
                         <img class="img-rounded pull-left blog_img" data-ng-src="{{blog_.imgSrc}}" alt="{{blog_.imgAlt}}">
-                        <div class="time_style pull-left" style="padding-top: 6px;margin-left: 1em">
+                        <div class="article_style pull-left">
                             <h2 class="title_style">{{blog_.aTitle}}</h2>
                             <span class="glyphicon glyphicon-calendar"></span>&nbsp;<span class="blog_color">{{blog_.date | date:'yyyy-MM-dd'}}&nbsp;|</span>
                             <span class="glyphicon glyphicon-user"></span>&nbsp;<span class="defaut_color">{{blog_.author}}</span>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="blog_p_top">
                     <h3 class="title_style">归档：</h3>
-                    <ul class="text_padding pull-left">
+                    <ul class="text_padding pull-left ul_1_margen-right">
                         <li><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;<a
                                 class="title_style blog_color" href="">2016年01月</a></li>
                         <li><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;<a
@@ -58,7 +58,7 @@
                         <li><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;<a
                                 class="title_style blog_color" href="">2016年01月</a></li>
                     </ul>
-                    <ul class="text_padding pull-left ul_2_margen-left">
+                    <ul class="text_padding pull-left">
                         <li><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;<a
                                 class="title_style blog_color" href="">2016年01月</a></li>
                     </ul>

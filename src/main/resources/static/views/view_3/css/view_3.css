@@ -25,16 +25,21 @@ a:hover {
         text-align: center;
     }
 
+    .article_style {
+        width: 100%;
+        padding-top: 6px;
+        color: #ffffff;
+    }
+
 }
 
 @media (min-width: 767px) {
     .archive_style {
-        position: absolute;
-        right: 5em;
+        width: 25%;
     }
 
     .blog_img {
-        width: 190px;
+        width: 20%;
         margin-bottom: 1.5em;
     }
 
@@ -43,12 +48,19 @@ a:hover {
     }
 
     .blog_md {
-        width: 35em;
-        padding: 0.5em 0;
+        width: 100%;
+        padding: 0.5em 12% 0.5em 0;
     }
 
     .text-style {
         text-align: right;
+    }
+
+    .article_style {
+        width: 75%;
+        padding-top: 6px;
+        margin-left: 1em;
+        color: #ffffff;
     }
 }
 
@@ -58,10 +70,6 @@ a:hover {
 
 .blog_color {
     color: #7f7f7f;
-}
-
-.time_style {
-    color: #ffffff;
 }
 
 .blog_p_top {
@@ -80,8 +88,8 @@ a:hover {
     padding: 5px 0;
 }
 
-.ul_2_margen-left {
-    margin-left: 35px;
+.ul_1_margen-right {
+    margin-right: 35px;
 }
 
 .mypagination {
