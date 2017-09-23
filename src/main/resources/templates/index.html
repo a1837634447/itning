@@ -107,7 +107,7 @@
         }).when('/view_2', {
             controller: 'view_2_Controller',
             templateUrl: 'views/view_2/view_2.html'
-        }).when('/view_3', {
+        }).when('/view_3/:page?', {
             controller: 'view_3_Controller',
             templateUrl: 'views/view_3/view_3.html'
         }).when('/view_4', {
@@ -172,9 +172,15 @@
     app.controller('view_2_Controller', ['$scope', function ($scope) {
 
     }]);
-    app.controller('view_3_Controller', ['$scope','$http', function ($scope,$http) {
+    app.controller('view_3_Controller', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
         $scope.type = [];
         $scope.blog = [];
+        $scope.page = 1;
+        var page = $routeParams['page'] ? $routeParams['page'] : 1;
+        if (parseInt(page) < 1) {
+            page = 1;
+        }
+        $scope.page = (parseInt(page));
         $http.get('/getBlogTypeData').then(function (response) {
             if (response.status === 200) {
                 $scope.type = response.data;
@@ -185,8 +191,12 @@
             $log.error(err);
         });
 
-        $http.get('/getBlogData').then(function (response) {
+        $http.get('/getBlogData?page=' + (parseInt(page) - 1)).then(function (response) {
             if (response.status === 200) {
+                console.log(response.data.first + ":" + response.data.last);
+                $scope.first = response.data.first;
+                $scope.last = response.data.last;
+                $scope.totalPages = response.data.totalPages;
                 $scope.blog = response.data.content;
             } else {
                 $log.error("view_3_Controller.$http.get.response.status:" + response.status + "text:" + response.statusText);

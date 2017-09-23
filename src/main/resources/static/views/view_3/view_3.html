@@ -6,7 +6,8 @@
             <ul>
                 <li data-ng-repeat="blog_ in blog" class="pull-left" data-type="{{blog_.type.name}}">
                     <section class="article_padding">
-                        <img class="img-rounded pull-left blog_img" data-ng-src="{{blog_.imgSrc}}" alt="{{blog_.imgAlt}}">
+                        <img class="img-rounded pull-left blog_img" data-ng-src="{{blog_.imgSrc}}"
+                             alt="{{blog_.imgAlt}}">
                         <div class="article_style pull-left">
                             <h2 class="title_style">{{blog_.aTitle}}</h2>
                             <span class="glyphicon glyphicon-calendar"></span>&nbsp;<span class="blog_color">{{blog_.date | date:'yyyy-MM-dd'}}&nbsp;|</span>
@@ -19,17 +20,17 @@
             <nav aria-label="Page navigation" class="text-style">
                 <ul class="mypagination">
                     <li>
-                        <a href="#" aria-label="Previous">
+                        <a data-ng-hide="first" data-ng-href="#!/view_3/{{page-1}}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
+                    <li data-ng-class="{active:page==1}"><a href="#!/view_3/1">1</a></li>
+                    <li data-ng-class="{active:page===2}"><a href="#!/view_3/2">2</a></li>
+                    <li data-ng-class="{active:page>2&&page<totalPages-1}"><a href="">...</a></li>
+                    <li data-ng-class="{active:page===totalPages-1}"><a href="#!/view_3/{{totalPages-1}}">{{totalPages-1}}</a></li>
+                    <li data-ng-class="{active:page===totalPages}"><a href="#!/view_3/{{totalPages}}">{{totalPages}}</a></li>
                     <li>
-                        <a href="#" aria-label="Next">
+                        <a data-ng-hide="last" data-ng-href="#!/view_3/{{page+1}}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>

@@ -5,7 +5,12 @@ import com.ning.itning.entity.view_3.Type;
 import com.ning.itning.service.View_3_Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -29,22 +34,24 @@ public class View_3_Controller {
 
     /**
      * 获取博客分类数据方法
+     *
+     * @return 博客类别JSON--java.util.List<com.ning.itning.entity.view_3.Type>
      * @author : ning
-     * @return  博客类别JSON--java.util.List<com.ning.itning.entity.view_3.Type>
      * @date :   2017/9/22
-    **/
+     **/
     @RequestMapping("getBlogTypeData")
-    public List<Type> getBlogTypeData(){
+    public List<Type> getBlogTypeData() {
         return view_3_service.getTypeEntity();
     }
+
     /**
-     *
+     * @return --java.util.List<com.ning.itning.entity.view_3.Blog>
      * @author : ning
-     * @return  --java.util.List<com.ning.itning.entity.view_3.Blog>
      * @date :   2017/9/22
-    **/
+     **/
     @RequestMapping("getBlogData")
-    public Page<Blog> getBlogData(){
-        return view_3_service.getBlogEntity();
+    public Page<Blog> getBlogData(@RequestParam(value = "page", defaultValue = "0") Integer page,
+                                  @RequestParam(value = "size", defaultValue = "5") Integer size) {
+        return view_3_service.getBlogEntity(page, size);
     }
 }

@@ -10,6 +10,9 @@ import com.ning.itning.service.View_3_Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -52,17 +55,23 @@ public class View_3_ServiceImpl implements View_3_Service {
 
     /**
      * 获取博客归档实体方法
+     *
+     * @return --java.util.List<com.ning.itning.entity.view_3.Archiving>
      * @author : ning
-     * @return  --java.util.List<com.ning.itning.entity.view_3.Archiving>
      * @date :   2017/9/22
-    **/
+     **/
     @Override
     public List<Archiving> getArchivingEntity() {
         return archivingDao.findAll();
     }
 
     @Override
-    public Page<Blog> getBlogEntity() {
-        return blogDao.findAll(new PageRequest(0, 10));
+    public Page<Blog> getBlogEntity(Integer page, Integer size) {
+        Sort sort = new Sort(Sort.Direction.DESC, "date");
+        if (page < 0) {
+            page = 0;
+        }
+        Pageable pageable = new PageRequest(page, size, sort);
+        return blogDao.findAll(pageable);
     }
 }
