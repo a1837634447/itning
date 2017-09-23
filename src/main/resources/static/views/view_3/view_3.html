@@ -28,11 +28,14 @@
                         </a>
                     </li>
                     <li data-ng-class="{active:page==1,disabled:page===1}"><a href="#!/view_3/{{nowType}}/1">1</a></li>
-                    <li data-ng-class="{active:page===2,disabled:page===2||totalPages===1}"><a href="#!/view_3/{{nowType}}/{{totalPages===1?1:2}}">{{totalPages===1?'...':2}}</a></li>
+                    <li data-ng-class="{active:page===2,disabled:page===2||totalPages===1}"><a
+                            href="#!/view_3/{{nowType}}/{{totalPages===1?1:2}}">{{totalPages===1?'...':2}}</a></li>
                     <li class="disabled" data-ng-class="{active:page>2&&page<totalPages-1}"><a href="">...</a></li>
-                    <li data-ng-class="{active:page===totalPages-1,disabled:page===totalPages-1||totalPages===1}"><a href="#!/view_3/{{nowType}}/{{totalPages===1?1:totalPages-1}}">{{totalPages===1?'...':totalPages-1}}</a>
+                    <li data-ng-class="{active:page===totalPages-1,disabled:page===totalPages-1||totalPages===1}"><a
+                            href="#!/view_3/{{nowType}}/{{totalPages===1?1:totalPages-1}}">{{totalPages===1?'...':totalPages-1}}</a>
                     </li>
-                    <li data-ng-class="{active:page===totalPages&&totalPages!==1,disabled:page===totalPages&&totalPages!==1||totalPages===1}"><a href="#!/view_3/{{nowType}}/{{totalPages}}">{{totalPages===1?'...':totalPages}}</a>
+                    <li data-ng-class="{active:page===totalPages&&totalPages!==1,disabled:page===totalPages&&totalPages!==1||totalPages===1}">
+                        <a href="#!/view_3/{{nowType}}/{{totalPages}}">{{totalPages===1?'...':totalPages}}</a>
                     </li>
                     <li>
                         <a data-ng-hide="last" data-ng-href="#!/view_3/{{nowType}}/{{page+1}}" aria-label="Next">
@@ -48,10 +51,15 @@
                 <div>
                     <h3 class="title_style">分类：</h3>
                     <ul class="text_padding">
-                        <li><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;<a
-                                class="title_style blog_color" data-ng-href="#!/view_3/all">所有文章</a></li>
-                        <li data-ng-repeat="type_ in type"><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;<a
-                                class="title_style blog_color" data-ng-href="#!/view_3/{{type_.id}}">{{type_.name}}</a></li>
+                        <li data-ng-class="{disabled:nowType==='all'}"><span
+                                class="glyphicon glyphicon-chevron-right"></span>&nbsp;<a
+                                data-ng-class="{defaut_color:nowType==='all',blog_color:nowType!=='all'}"
+                                class="title_style" data-ng-href="#!/view_3/all">所有文章</a></li>
+                        <li data-ng-repeat="type_ in type"
+                            data-ng-class="{disabled:nowType===type_.id,defaut_color:nowType===type_.id}"><span
+                                class="glyphicon glyphicon-chevron-right"></span>&nbsp;<a
+                                data-ng-class="{defaut_color:nowType===type_.id,blog_color:nowType!==type_.id}"
+                                class="title_style" data-ng-href="#!/view_3/{{type_.id}}">{{type_.name}}</a></li>
                     </ul>
                 </div>
                 <div class="blog_p_top">
