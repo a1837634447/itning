@@ -193,7 +193,6 @@
 
         $http.get('/getBlogData?page=' + (parseInt(page) - 1)).then(function (response) {
             if (response.status === 200) {
-                console.log(response.data.first + ":" + response.data.last);
                 $scope.first = response.data.first;
                 $scope.last = response.data.last;
                 $scope.totalPages = response.data.totalPages;
