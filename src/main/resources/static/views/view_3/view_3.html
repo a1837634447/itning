@@ -12,7 +12,7 @@
                         <img class="img-rounded pull-left blog_img" data-ng-src="{{blog_.imgSrc}}"
                              alt="{{blog_.imgAlt}}">
                         <div class="article_style pull-left">
-                            <h2 class="title_style">{{blog_.aTitle}}</h2>
+                            <h2 class="title_style"><a href="/article/{{blog_.id}}">{{blog_.aTitle}}</a></h2>
                             <span class="glyphicon glyphicon-calendar"></span>&nbsp;<span class="blog_color">{{blog_.date | date:'yyyy-MM-dd'}}&nbsp;|</span>
                             <span class="glyphicon glyphicon-user"></span>&nbsp;<span class="defaut_color">{{blog_.author}}</span>
                             <p class="blog_color blog_md">{{blog_.md | limitTo:100}}......</p>

@@ -25,4 +25,8 @@ public interface View_3_Service {
     Page<Blog> getBlogEntity(Integer page, Integer size);
 
     Blogs getBlogEntityByType(String typeId, Integer page, Integer size);
+
+    Blog getBlogByID(String id);
+
+    void saveBlog(Blog blog);
 }

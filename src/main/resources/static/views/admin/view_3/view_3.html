@@ -1,9 +1,11 @@
 <link rel="stylesheet" data-ng-href="lib_web/editormd/css/editormd.css"/>
 <div id="layout">
     <form method="post" data-ng-submit="submit()">
+        title<input type="text" name="title" data-ng-model="title"/>
+        author<input type="text" name="author" data-ng-model="author"/>
+        typeID<input type="text" name="typeID" data-ng-model="typeID"/>
         <div id="editormd_id">
-            <!-- Custom textarea name attribute <textarea style="display:none;" name="test-textarea-name"> -->
-            <textarea style="display:none;" id="md_textarea"># aa</textarea>
+            <textarea style="display:none;" id="md_textarea"></textarea>
         </div>
         <div style="width:90%;margin: 10px auto;">
             <input type="submit" name="submit" value="提交表单 Submit" style="padding: 5px;"/>

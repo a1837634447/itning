@@ -121,4 +121,14 @@ public class View_3_ServiceImpl implements View_3_Service {
         blogs.setTotalPages(totalPages);
         return blogs;
     }
+
+    @Override
+    public Blog getBlogByID(String id) {
+        return blogDao.findById(id);
+    }
+
+    @Override
+    public void saveBlog(Blog blog) {
+        blogDao.saveAndFlush(blog);
+    }
 }
