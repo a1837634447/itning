@@ -11,6 +11,7 @@
     <meta name="description" content="一个分享技术和个人见解的网站...">
     <meta name="keywords" content="Ning, 个人网站, JAVA, 前端">
     <meta name="author" content="Ning">
+    <meta name="_csrf" th:content="${_csrf.token}">
     <!-- Bootstrap -->
     <link th:href="@{/lib_web/bootstrap/css/bootstrap.css}" rel="stylesheet">
     <link th:href="@{/css/dashboard.css}" rel="stylesheet">
@@ -133,6 +134,7 @@
             $log.error(err);
         });
         $scope.submit = function () {
+            var token=$("meta[name='_csrf']").attr("content");
             var value = angular.element("#md_textarea").val();
             if ($scope.title !== "" && $scope.author !== "" && $scope.typeID !== "" && value!=="") {
                 //要通过post传递的参数
@@ -141,7 +143,7 @@
                     url = "saveBlog",
                     //将参数传递的方式改成form
                     postCfg = {
-                        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded',"X-CSRF-TOKEN":token},
                         transformRequest: function (data) {
                             return $.param(data);
                         }
