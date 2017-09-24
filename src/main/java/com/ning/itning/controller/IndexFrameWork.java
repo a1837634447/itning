@@ -49,6 +49,6 @@ public class IndexFrameWork {
 
     @RequestMapping("/admin")
     public String admin() {
-        return "index-admin";
+        return "art";
     }
 }

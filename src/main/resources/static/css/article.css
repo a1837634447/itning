@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*css 初始化 */
-html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img {
+html, body, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img {
     margin: 0;
     padding: 0;
     color: #F25C27;
@@ -104,13 +104,22 @@ a:hover {
         -moz-border-radius: 0;
         border-radius: 0;
     }
+    .article_style {
+        width: 100%;
+        padding-top: 6px;
+        color: #ffffff;
+    }
 }
-
+@media (min-width: 767px) {
+    .article_style {
+        width: 75%;
+        padding: 3em 0.5em;
+        margin-left: 1em;
+        color: #333;
+    }
+}
 .defaut_background_color {
     background-color: #F25C27;
-}
-.defaut_color{
-    color: #F25C27;
 }
 
 .header_logo {
@@ -133,7 +142,7 @@ a:hover {
     position: relative;
 }
 
-.a_style{
+.a_style {
     margin-right: -0.5em;
     border-radius: 0;
     padding: 30px;
@@ -174,4 +183,26 @@ footer {
 
 .privacy > a {
     color: #F25C27;
+}
+
+#sidebar {
+    position: fixed;
+    top: 25%;
+    right: 40px;
+    z-index: 999;
+}
+#sidebar_btn{
+    background-color: #f25c27;
+    color: white;
+    float: left;
+    width: 20%;
+    position: relative;
+    top: 5em;
+}
+
+#editormd-view {
+    width: 100%;
+}
+.title_style {
+    padding-bottom: 0.5em;
 }

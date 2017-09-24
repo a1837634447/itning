@@ -42,14 +42,10 @@
 
 <div id="layout">
     <div id="sidebar">
-        <h1>Table of Contents</h1>
-        <div class="markdown-body editormd-preview-container" id="custom-toc-container">#custom-toc-container</div>
+        <div class="markdown-body editormd-preview-container" id="custom-toc-container"></div>
     </div>
     <div id="test-editormd-view">
-        <textarea style="display:none;" name="test-editormd-markdown-doc">###Hello world!</textarea>
-    </div>
-    <div id="test-editormd-view2">
-                <textarea id="append-test" style="display:none;"></textarea>
+        <textarea style="display:none;" name="test-editormd-markdown-doc"></textarea>
     </div>
 </div>
 
@@ -59,7 +55,7 @@
 </script> -->
 <script type="text/javascript">
     $(function() {
-        var testEditormdView, testEditormdView2;
+        var testEditormdView;
 
         $.get("views/admin/testview/test.md", function(markdown) {
 
@@ -77,7 +73,7 @@
                 taskList        : true,
                 tex             : true,  // 默认不解析
                 flowChart       : true,  // 默认不解析
-                sequenceDiagram : true,  // 默认不解析
+                sequenceDiagram : true // 默认不解析
             });
 
             //console.log("返回一个 jQuery 实例 =>", testEditormdView);
@@ -86,15 +82,6 @@
             //console.log(testEditormdView.getMarkdown());
 
             //alert(testEditormdView.getMarkdown());
-        });
-
-        testEditormdView2 = editormd.markdownToHTML("test-editormd-view2", {
-            htmlDecode      : "style,script,iframe",  // you can filter tags decode
-            emoji           : true,
-            taskList        : true,
-            tex             : true,  // 默认不解析
-            flowChart       : true,  // 默认不解析
-            sequenceDiagram : true,  // 默认不解析
         });
     });
 
