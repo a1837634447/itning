@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -37,8 +39,8 @@ public class ArticleController {
     }
 
     @RequestMapping("saveBlog")
-    @ResponseBody public String saveBlog(String title,String author,String typeID,String md){
-        String uuid= UUID.randomUUID().toString();
+    @ResponseBody public List<String> saveBlog(String title,String author,String typeID,String md){
+        String uuid= UUID.randomUUID().toString().replaceAll("\\-", "");
         String imgUrl="views/view_3/img/4.jpg";
         String imgAlt="alt";
         Blog blog=new Blog();
@@ -61,6 +63,8 @@ public class ArticleController {
         System.out.println(typeID);
         System.out.println(uuid);
         System.out.println(md);
-        return "success";
+        List<String> list = new ArrayList<>();
+        list.add("success");
+        return list;
     }
 }

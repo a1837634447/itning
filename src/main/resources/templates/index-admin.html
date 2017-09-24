@@ -103,9 +103,6 @@
         $routeProvider.when('/view_3_manage', {
             controller: 'view_3_manage_Controller',
             templateUrl: 'views/admin/view_3/view_3.html'
-        }).when('/test', {
-            controller: 'testC',
-            templateUrl: 'views/admin/testview/test.html'
         }).otherwise({redirectTo: '/view_3_manage'});
     }]);
     /*/路由*/
@@ -121,30 +118,46 @@
         $scope.$location = $location;
     }]);
 
-    app.controller('view_3_manage_Controller', ['$scope', '$http', function ($scope, $http) {
-        $scope.title="";
-        $scope.author="";
-        $scope.typeID="";
+    app.controller('view_3_manage_Controller', ['$scope', '$http', '$log','$window', function ($scope, $http, $log,$window) {
+        $scope.title = "";
+        $scope.author = "";
+        $scope.typeID = "";
+        $scope.type = [];
+        $http.get('/getBlogTypeData').then(function (response) {
+            if (response.status === 200) {
+                $scope.type = response.data;
+            } else {
+                $log.error("view_3_manage_Controller.$http.get.response.status:" + response.status + "text:" + response.statusText);
+            }
+        }, function (err) {
+            $log.error(err);
+        });
         $scope.submit = function () {
             var value = angular.element("#md_textarea").val();
-            console.log(value);
-            //要通过post传递的参数
-            var data = {'md': value,'title':$scope.title,'author':$scope.author,'typeID':$scope.typeID},
-                //post请求的地址
-                url = "saveBlog",
-                //将参数传递的方式改成form
-                postCfg = {
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                    transformRequest: function (data) {
-                        return $.param(data);
+            if ($scope.title !== "" && $scope.author !== "" && $scope.typeID !== "" && value!=="") {
+                //要通过post传递的参数
+                var data = {'md': value, 'title': $scope.title, 'author': $scope.author, 'typeID': $scope.typeID},
+                    //post请求的地址
+                    url = "saveBlog",
+                    //将参数传递的方式改成form
+                    postCfg = {
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                        transformRequest: function (data) {
+                            return $.param(data);
+                        }
+                    };
+                //发送post请求，获取数据
+                $http.post(url, data, postCfg).then(function (reponse) {
+                    $log.log(reponse);
+                    if(reponse.data[0]==="success"){
+                        $window.location.reload();
                     }
-                };
-            //发送post请求，获取数据
-            $http.post(url, data, postCfg).then(function (reponse) {
-                console.log(reponse);
-            },function (err) {
-
-            });
+                }, function (err) {
+                    $log.error(err);
+                });
+            } else {
+                $log.warn("null");
+            }
         };
     }]);
 
