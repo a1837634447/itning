@@ -17,5 +17,9 @@ spring:
   mvc:
     favicon:
       enabled: false
+security:
+  user:
+    name: admin
+    password: ning64486shan
 logging:
   level: error
