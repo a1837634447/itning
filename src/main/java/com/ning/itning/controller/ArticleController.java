@@ -58,11 +58,6 @@ public class ArticleController {
         blog.setMd(md);
         blog.setDate(new Date());
         view_3_service.saveBlog(blog);
-        System.out.println(title);
-        System.out.println(author);
-        System.out.println(typeID);
-        System.out.println(uuid);
-        System.out.println(md);
         List<String> list = new ArrayList<>();
         list.add("success");
         return list;

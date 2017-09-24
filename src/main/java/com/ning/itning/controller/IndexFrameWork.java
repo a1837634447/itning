@@ -3,6 +3,7 @@ package com.ning.itning.controller;
 import com.ning.itning.entity.indexFrameWork.Index;
 import com.ning.itning.service.IndexService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -46,6 +47,7 @@ public class IndexFrameWork {
     public Index getIndexFrameWorkData() {
         return indexService.getIndexEntity();
     }
+
 
     @RequestMapping("/admin")
     public String admin() {
