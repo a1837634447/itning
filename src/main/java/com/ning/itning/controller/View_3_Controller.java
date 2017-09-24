@@ -58,7 +58,7 @@ public class View_3_Controller {
     /**
      * 根据类别分页获取Blog实体
      *
-     * @param id   分类ID
+     * @param type   分类ID
      * @param page 当前页码
      * @param size 每页条目数
      * @return --com.ning.itning.entity.view_3.Blogs

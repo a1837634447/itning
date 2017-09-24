@@ -53,11 +53,16 @@
             <a href="#!/view1"><img class="header_logo_img" style="width: 8em;" src="img/logo.png" alt="logo"/></a>
         </h1>
         <div class="header_a hidden-xs">
-            <a href="#!/view_1" class="a_style" data-ng-class="{btn:1,active_now:$location.path().substr(0,7)=='/view_1'}">{{viewTitle[0]}}</a>
-            <a href="#!/view_2" class="a_style" data-ng-class="{btn:1,active_now:$location.path().substr(0,7)=='/view_2'}">{{viewTitle[1]}}</a>
-            <a href="#!/view_3/all" class="a_style" data-ng-class="{btn:1,active_now:$location.path().substr(0,7)=='/view_3'}">{{viewTitle[2]}}</a>
-            <a href="#!/view_4" class="a_style" data-ng-class="{btn:1,active_now:$location.path().substr(0,7)=='/view_4'}">{{viewTitle[3]}}</a>
-            <a href="#!/view_5" class="a_style" data-ng-class="{btn:1,active_now:$location.path().substr(0,7)=='/view_5'}">{{viewTitle[4]}}</a>
+            <a href="#!/view_1" class="a_style"
+               data-ng-class="{btn:1,active_now:$location.path().substr(0,7)=='/view_1'}">{{viewTitle[0]}}</a>
+            <a href="#!/view_2" class="a_style"
+               data-ng-class="{btn:1,active_now:$location.path().substr(0,7)=='/view_2'}">{{viewTitle[1]}}</a>
+            <a href="#!/view_3/all" class="a_style"
+               data-ng-class="{btn:1,active_now:$location.path().substr(0,7)=='/view_3'}">{{viewTitle[2]}}</a>
+            <a href="#!/view_4" class="a_style"
+               data-ng-class="{btn:1,active_now:$location.path().substr(0,7)=='/view_4'}">{{viewTitle[3]}}</a>
+            <a href="#!/view_5" class="a_style"
+               data-ng-class="{btn:1,active_now:$location.path().substr(0,7)=='/view_5'}">{{viewTitle[4]}}</a>
         </div>
         <div class="hidden-sm hidden-md hidden-lg position_relative">
             <a class="btn menu_button" data-toggle="collapse" data-target=".nav-collapse_">Menu <span
@@ -146,22 +151,20 @@
         });
     }]);
     app.controller('view_1_Controller', ['$scope', '$http', function ($scope, $http) {
-        /*$scope.$on("$viewContentLoaded", function () {
-            console.log("ng-view content loaded!");
-        });
-
-        $scope.$on("$routeChangeStart", function (event, next, current) {
-            //event.preventDefault(); //cancel url change
-            console.log("route change start!");
-        });
-        $scope.$on("$routeChangeSuccess", function (event, next, current) {
-            //event.preventDefault(); //cancel url change
-            console.log("route change Success!");
-        });*/
         $scope.carousel = [];
+        $scope.blog = [];
         $http.get('/getCarouselData').then(function (response) {
             if (response.status === 200) {
                 $scope.carousel = response.data;
+            } else {
+                $log.error("view_1_Controller.$http.get.response.status:" + response.status + "text:" + response.statusText);
+            }
+        }, function (err) {
+            $log.error(err);
+        });
+        $http.get('/getBlogData?size=4').then(function (response) {
+            if (response.status === 200) {
+                $scope.blog = response.data.content;
             } else {
                 $log.error("view_1_Controller.$http.get.response.status:" + response.status + "text:" + response.statusText);
             }
