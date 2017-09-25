@@ -193,24 +193,30 @@
         $scope.type = [];
         $scope.blog = [];
         $scope.typeID = "";
-        var url="";
-        $http.get('/getBlogTypeData').then(function (response) {
-            if (response.status === 200) {
-                $scope.type = response.data;
-            } else {
-                $log.error("view_3_Controller.$http.get.response.status:" + response.status + "text:" + response.statusText);
-            }
-        }, function (err) {
-            $log.error(err);
-        });
+        $scope.newType = "";
+        var url = "";
+        getBlogType();
         $scope.$watch('typeID', function (now, old) {
             if (now !== "") {
-                url='/getBlogEntityByType?type=' + now + '&size=50';
+                url = '/getBlogEntityByType?type=' + now + '&size=50';
             } else {
-                url='/getBlogData?size=50';
+                url = '/getBlogData?size=50';
             }
             getBlogData(url);
         });
+
+        function getBlogType() {
+            $http.get('/getBlogTypeData').then(function (response) {
+                if (response.status === 200) {
+                    $scope.type = response.data;
+                } else {
+                    $log.error("view_3_Controller.$http.get.response.status:" + response.status + "text:" + response.statusText);
+                }
+            }, function (err) {
+                $log.error(err);
+            });
+        }
+
         function getBlogData(url) {
             $http.get(url).then(function (response) {
                 if (response.status === 200) {
@@ -218,6 +224,19 @@
                     $scope.last = response.data.last;
                     $scope.totalPages = response.data.totalPages;
                     $scope.blog = response.data.content;
+                } else {
+                    $log.error("view_3_Controller.$http.get.response.status:" + response.status + "text:" + response.statusText);
+                }
+            }, function (err) {
+                $log.error(err);
+            });
+        }
+
+        function sendRequestAndRefreshView(url) {
+            $http.get(url).then(function (response) {
+                if (response.status === 200) {
+                    $scope.newType = "";
+                    getBlogType();
                 } else {
                     $log.error("view_3_Controller.$http.get.response.status:" + response.status + "text:" + response.statusText);
                 }
@@ -235,7 +254,7 @@
             }
         };
         $scope.delBlogByID = function (id) {
-            $http.get('/adminApi/deleteBlogByID?id='+id).then(function (response) {
+            $http.get('/adminApi/deleteBlogByID?id=' + id).then(function (response) {
                 if (response.status === 200) {
                     getBlogData(url);
                 } else {
@@ -244,6 +263,16 @@
             }, function (err) {
                 $log.error(err);
             });
+        };
+        $scope.addType = function () {
+            $log.log($scope.newType);
+            if ($scope.newType !== "") {
+                sendRequestAndRefreshView('/adminApi/addType?name=' + $scope.newType);
+            }
+        };
+        $scope.deleteType = function (id) {
+            $log.log(id);
+            sendRequestAndRefreshView('/adminApi/deleteTypeByID?id=' + id);
         };
     }]);
 

@@ -84,4 +84,31 @@ public class AdminController {
         list.add("success");
         return list;
     }
+
+    /**
+     *
+     * @author : ning
+     * @param name 名称
+     * @return  --java.util.List<java.lang.String>
+     * @date :   2017/9/26
+    **/
+    @RequestMapping("addType")
+    @ResponseBody
+    public List<String> addType(String name){
+        // TODO 接口实现
+        System.out.println(name);
+        List<String> list = new ArrayList<>();
+        list.add("success");
+        return list;
+    }
+
+    @RequestMapping("deleteTypeByID")
+    @ResponseBody
+    public List<String> deleteTypeByID(String id){
+        // TODO 接口实现
+        System.out.println(id);
+        List<String> list = new ArrayList<>();
+        list.add("success");
+        return list;
+    }
 }

@@ -7,12 +7,21 @@
         <tr data-ng-repeat="type_ in type">
             <td><p>{{type_.name}}</p></td>
             <td>
-                <button class="btn btn-danger">删除</button>
+                <button class="btn btn-danger" data-ng-click="deleteType(type_.id)">删除</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    <input type="text" data-ng-model="newType"/>
+                </label>
+            </td>
+            <td>
+                <button class="btn btn-info" data-ng-click="addType()">添加类别信息</button>
             </td>
         </tr>
     </table>
 </div>
-<button style="width: 100%" class="btn btn-info">添加类别信息</button>
 <hr/>
 文章类别：
 <label>
@@ -30,7 +39,8 @@
         <tr data-ng-repeat="blog_ in blog">
             <td style="line-height: 34px;"><a href="/article/{{blog_.id}}" target="_blank">{{blog_.aTitle}}</a></td>
             <td>
-                <button style="width: 48.5%" class="btn btn-primary" data-ng-click="updataBlogByID(blog_.id)">编辑</button>
+                <button style="width: 48.5%" class="btn btn-primary" data-ng-click="updataBlogByID(blog_.id)">编辑
+                </button>
                 <button style="width: 48.5%" class="btn btn-danger" data-ng-click="delBlogByID(blog_.id)">删除</button>
             </td>
         </tr>
