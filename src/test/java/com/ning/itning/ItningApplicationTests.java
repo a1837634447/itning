@@ -13,7 +13,7 @@ public class ItningApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		System.out.println( UUID.randomUUID().toString().replaceAll("\\-", ""));
+
 	}
 
 }
