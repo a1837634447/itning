@@ -1,0 +1,40 @@
+<link rel="stylesheet" data-ng-href="lib_web/editormd/css/editormd.css"/>
+<div id="layout">
+    <form method="post" data-ng-submit="submit()">
+        <input type="text" name="title" class="form-control" data-ng-model="title" placeholder="title"/>
+        <input type="text" name="author" class="form-control" data-ng-model="author" placeholder="author"/>
+        <label>
+            <select name="type" class="form-control" data-ng-model="typeID">
+                <option data-ng-repeat="type_ in type"  value="{{type_.id}}">{{type_.name}}</option>
+            </select>
+        </label>
+        {{typeID}}
+        <div id="editormd_id">
+            <label for="md_textarea"></label><textarea style="display:none;" id="md_textarea">{{md}}</textarea>
+        </div>
+        <div style="width:90%;margin: 10px auto;">
+            <input type="submit" class="form-control" name="submit" value="提交表单 Submit" style="padding: 5px;"/>
+        </div>
+    </form>
+    <div></div>
+</div>
+
+<script type="text/javascript">
+    /*$(function() {
+        $.get("", function(md) {
+            var testEditor = editormd("test-editormd", {
+                width  : "90%",
+                height : 640,
+                path   : "lib_web/editormd/lib/",
+                appendMarkdown : md,
+                saveHTMLToTextarea : true
+            });
+        });*/
+    editormd("editormd_id", {
+        width: "100%",
+        height: 650,
+        path: "./lib_web/editormd/lib/",
+        emoji:false,
+        saveHTMLToTextarea: true
+    });
+</script>

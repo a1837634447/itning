@@ -15,6 +15,4 @@ import java.util.List;
 **/
 public interface BlogDao extends JpaRepository<Blog,String> {
     List<Blog> findByTypeOrderByDateDesc(Type type);
-
-    Blog findById(String id);
 }

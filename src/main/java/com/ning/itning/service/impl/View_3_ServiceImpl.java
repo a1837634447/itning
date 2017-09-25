@@ -16,7 +16,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * 视图三服务层实现类
@@ -97,6 +99,9 @@ public class View_3_ServiceImpl implements View_3_Service {
      **/
     @Override
     public Blogs getBlogEntityByType(String typeId, Integer page, Integer size) {
+        if (!typeDao.exists(typeId)) {
+            return new Blogs();
+        }
         Type type = new Type();
         type.setId(typeId);
         List<Blog> blogByTypeList = blogDao.findByTypeOrderByDateDesc(type);
@@ -122,13 +127,97 @@ public class View_3_ServiceImpl implements View_3_Service {
         return blogs;
     }
 
+    /**
+     * 根据Blog ID 获取Blog 实体
+     *
+     * @param id Blog ID
+     * @return --com.ning.itning.entity.view_3.Blog
+     * @author : ning
+     * @date :   2017/9/25
+     **/
     @Override
     public Blog getBlogByID(String id) {
-        return blogDao.findById(id);
+        if (!blogDao.exists(id)) {
+            return new Blog();
+        }
+        return blogDao.getOne(id);
     }
 
+    /**
+     * 保存文章方法
+     *
+     * @param title  标题
+     * @param author 作者
+     * @param typeID 类别ID
+     * @param md     内容
+     * @author : ning
+     * @date :   2017/9/25
+     **/
     @Override
-    public void saveBlog(Blog blog) {
+    public void saveBlog(String title, String author, String typeID, String md) {
+        String uuid = UUID.randomUUID().toString().replaceAll("\\-", "");
+        String imgUrl = "views/view_3/img/4.jpg";
+        String imgAlt = "alt";
+        Blog blog = new Blog();
+        if (!typeDao.exists(typeID)) {
+            throw new IllegalArgumentException("typeID:" + typeID + " does not exist");
+        }
+        Type type = typeDao.getOne(typeID);
+        blog.setId(uuid);
+        blog.setaHref("#");
+        blog.setaTitle(title);
+        blog.setAuthor(author);
+        blog.setImgAlt(imgAlt);
+        blog.setImgSrc(imgUrl);
+        blog.setType(type);
+        blog.setMd(md);
+        blog.setDate(new Date());
         blogDao.saveAndFlush(blog);
+    }
+
+    /**
+     * 根据ID删除文章方法
+     *
+     * @param id 文章ID
+     * @return --void
+     * @author : ning
+     * @date :   2017/9/25
+     **/
+    @Override
+    public void deleteBlogByID(String id) {
+        if (blogDao.exists(id)) {
+            blogDao.delete(id);
+        }
+    }
+
+    /**
+     * 根据ID 更新文章
+     *
+     * @param id     ID
+     * @param title  标题
+     * @param author 作者
+     * @param typeID 类别ID
+     * @param md     内容
+     * @author : ning
+     * @date :   2017/9/25
+     **/
+    @Override
+    public void updataBlogByID(String id, String title, String author, String typeID, String md) {
+        if (blogDao.exists(id)) {
+            Blog blog = blogDao.getOne(id);
+            if (title != null) {
+                blog.setaTitle(title);
+            }
+            if (author != null) {
+                blog.setAuthor(author);
+            }
+            if (typeID != null && typeDao.exists(typeID)) {
+                blog.setType(typeDao.getOne(typeID));
+            }
+            if (md != null) {
+                blog.setMd(md);
+            }
+            blogDao.saveAndFlush(blog);
+        }
     }
 }

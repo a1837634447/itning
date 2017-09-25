@@ -32,7 +32,7 @@ public class Blog implements Serializable{
     private Date date;
     @Column(name = "author")
     private String author;
-    @OneToOne(cascade=CascadeType.ALL)//Blog是关系的维护端
+    @OneToOne(cascade=CascadeType.PERSIST)//Blog是关系的维护端
     @JoinColumn(name="type")//指定外键的名称
     @Fetch(FetchMode.JOIN)//会使用left join查询,只产生一条语句
     private Type type;

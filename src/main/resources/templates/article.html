@@ -90,7 +90,7 @@
                                                                       th:text="${blog.author}"></span>
         </div>
         <div id="editormd-view">
-            <textarea style="display:none;" name="test-editormd-markdown-doc"></textarea>
+            <textarea style="display:none;" name="editormd-markdown-doc" th:text="${blog.md}"></textarea>
         </div>
     </div>
 </section>
@@ -118,12 +118,11 @@
 <script th:src="@{/lib_web/editormd/lib/flowchart.min.js}"></script>
 <script th:src="@{/lib_web/editormd/lib/jquery.flowchart.min.js}"></script>
 <script th:src="@{/lib_web/editormd/editormd.js}"></script>
-<script th:inline="javascript">
+<script>
     'use strict';
     $(function () {
         editormd.markdownToHTML("editormd-view", {
             //markdown: markdown,//+ "\r\n" + $("#append-test").text(),
-            markdown: [[${blog.md}]],
             //htmlDecode      : true,       // 开启 HTML 标签解析，为了安全性，默认不开启
             htmlDecode: "style,script,iframe",  // you can filter tags decode
             //toc             : false,

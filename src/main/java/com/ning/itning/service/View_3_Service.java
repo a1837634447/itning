@@ -28,5 +28,9 @@ public interface View_3_Service {
 
     Blog getBlogByID(String id);
 
-    void saveBlog(Blog blog);
+    void saveBlog(String title, String author, String typeID, String md);
+
+    void deleteBlogByID(String id);
+
+    void updataBlogByID(String id, String title, String author, String typeID, String md);
 }

@@ -36,20 +36,20 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#">Ning！后台管理系统</a>
-            <form th:action="@{/logout}" method="post" style="position: absolute;top: 8px;left: 190px;">
-                <input type="submit" class="btn btn-default" value="注销">
-            </form>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">框架管理</a></li>
-                <li><a href="#">视图一设置</a></li>
-                <li><a href="#">视图二设置</a></li>
-                <li class="active"><a href="#">视图三设置</a></li>
-                <li><a href="#">视图四设置</a></li>
-                <li><a href="#">视图五设置</a></li>
-                <li><a href="#">博客发布</a></li>
+                <li><a href="#!/view_1">视图一设置</a></li>
+                <li><a href="#!/view_2">视图二设置</a></li>
+                <li class="active"><a href="#!/view_3">视图三设置</a></li>
+                <li><a href="#!/view_4">视图四设置</a></li>
+                <li><a href="#!/view_5">视图五设置</a></li>
+                <li><a href="#!/blog">博客发布</a></li>
             </ul>
+            <form th:action="@{/logout}" method="post" class="navbar-form navbar-right">
+                <input type="submit" class="form-control" value="注销">
+            </form>
             <form class="navbar-form navbar-right">
                 <input type="text" class="form-control" placeholder="Search...">
             </form>
@@ -64,14 +64,14 @@
                 <li><a href="#">框架管理 <span class="sr-only">框架管理</span></a></li>
             </ul>
             <ul class="nav nav-sidebar">
-                <li><a href="#">视图一设置</a></li>
-                <li><a href="#">视图二设置</a></li>
-                <li class="active"><a href="#">视图三设置</a></li>
-                <li><a href="#">视图四设置</a></li>
-                <li><a href="#">视图五设置</a></li>
+                <li><a href="#!/view_1">视图一设置</a></li>
+                <li><a href="#!/view_2">视图二设置</a></li>
+                <li class="active"><a href="#!/view_3">视图三设置</a></li>
+                <li><a href="#!/view_4">视图四设置</a></li>
+                <li><a href="#!/view_5">视图五设置</a></li>
             </ul>
             <ul class="nav nav-sidebar">
-                <li><a href="#">博客发布</a></li>
+                <li><a href="#!/blog">博客发布</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" data-ng-view="">
@@ -101,16 +101,25 @@
 
     /*路由*/
     app.config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/view_3_manage', {
-            controller: 'view_3_manage_Controller',
+        $routeProvider.when('/blog', {
+            controller: 'blog_Controller',
+            templateUrl: 'views/admin/blogeditor/blogeditor.html'
+        }).when('/view_3', {
+            controller: 'view_3_Controller',
             templateUrl: 'views/admin/view_3/view_3.html'
-        }).otherwise({redirectTo: '/view_3_manage'});
+        }).otherwise({redirectTo: '/view_3'});
     }]);
     /*/路由*/
 
     /*服务*/
     app.service('MainService', [function () {
-
+        var blog = [];
+        this.getblogData = function () {
+            return blog;
+        };
+        this.setblogData = function (blog_) {
+            blog = blog_;
+        };
     }]);
     /*/服务*/
 
@@ -119,31 +128,48 @@
         $scope.$location = $location;
     }]);
 
-    app.controller('view_3_manage_Controller', ['$scope', '$http', '$log','$window', function ($scope, $http, $log,$window) {
+    app.controller('blog_Controller', ['$scope', '$http', '$log', '$window', 'MainService', function ($scope, $http, $log, $window, MainService) {
         $scope.title = "";
         $scope.author = "";
         $scope.typeID = "";
         $scope.type = [];
+        $scope.md = "";
+        //post请求的地址
+        var url = "adminApi/saveBlog";
+        var id = -1;
+        var blog = MainService.getblogData();
+        if (blog.length !== 0) {
+            $scope.title = blog.aTitle;
+            $scope.author = blog.author;
+            $scope.typeID = blog.type.id;
+            $scope.md = blog.md;
+            id = blog.id;
+            url = "adminApi/updataBlogByID";
+        }
         $http.get('/getBlogTypeData').then(function (response) {
             if (response.status === 200) {
                 $scope.type = response.data;
             } else {
-                $log.error("view_3_manage_Controller.$http.get.response.status:" + response.status + "text:" + response.statusText);
+                $log.error("addblog_Controller.$http.get.response.status:" + response.status + "text:" + response.statusText);
             }
         }, function (err) {
             $log.error(err);
         });
         $scope.submit = function () {
-            var token=$("meta[name='_csrf']").attr("content");
+            var token = $("meta[name='_csrf']").attr("content");
             var value = angular.element("#md_textarea").val();
-            if ($scope.title !== "" && $scope.author !== "" && $scope.typeID !== "" && value!=="") {
+            if ($scope.title !== "" && $scope.author !== "" && $scope.typeID !== "" && value !== "") {
                 //要通过post传递的参数
-                var data = {'md': value, 'title': $scope.title, 'author': $scope.author, 'typeID': $scope.typeID},
-                    //post请求的地址
-                    url = "saveBlog",
+                var data = {
+                        'id': id,
+                        'md': value,
+                        'title': $scope.title,
+                        'author': $scope.author,
+                        'typeID': $scope.typeID
+                    },
                     //将参数传递的方式改成form
                     postCfg = {
-                        headers: {'Content-Type': 'application/x-www-form-urlencoded',"X-CSRF-TOKEN":token},
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded', "X-CSRF-TOKEN": token},
                         transformRequest: function (data) {
                             return $.param(data);
                         }
@@ -151,7 +177,7 @@
                 //发送post请求，获取数据
                 $http.post(url, data, postCfg).then(function (reponse) {
                     $log.log(reponse);
-                    if(reponse.data[0]==="success"){
+                    if (reponse.data[0] === "success") {
                         $window.location.reload();
                     }
                 }, function (err) {
@@ -163,11 +189,64 @@
         };
     }]);
 
-    app.controller('testC', ['$scope', function ($scope) {
-        $scope.submit = function () {
+    app.controller('view_3_Controller', ['$scope', '$http', '$log', 'MainService', '$window', function ($scope, $http, $log, MainService, $window) {
+        $scope.type = [];
+        $scope.blog = [];
+        $scope.typeID = "";
+        var url="";
+        $http.get('/getBlogTypeData').then(function (response) {
+            if (response.status === 200) {
+                $scope.type = response.data;
+            } else {
+                $log.error("view_3_Controller.$http.get.response.status:" + response.status + "text:" + response.statusText);
+            }
+        }, function (err) {
+            $log.error(err);
+        });
+        $scope.$watch('typeID', function (now, old) {
+            if (now !== "") {
+                url='/getBlogEntityByType?type=' + now + '&size=50';
+            } else {
+                url='/getBlogData?size=50';
+            }
+            getBlogData(url);
+        });
+        function getBlogData(url) {
+            $http.get(url).then(function (response) {
+                if (response.status === 200) {
+                    $scope.first = response.data.first;
+                    $scope.last = response.data.last;
+                    $scope.totalPages = response.data.totalPages;
+                    $scope.blog = response.data.content;
+                } else {
+                    $log.error("view_3_Controller.$http.get.response.status:" + response.status + "text:" + response.statusText);
+                }
+            }, function (err) {
+                $log.error(err);
+            });
+        }
 
+        $scope.updataBlogByID = function (id) {
+            for (var i = 0; i < $scope.blog.length; i++) {
+                if ($scope.blog[i].id === id) {
+                    MainService.setblogData($scope.blog[i]);
+                    $window.location.href = "#!/blog";
+                }
+            }
+        };
+        $scope.delBlogByID = function (id) {
+            $http.get('/adminApi/deleteBlogByID?id='+id).then(function (response) {
+                if (response.status === 200) {
+                    getBlogData(url);
+                } else {
+                    $log.error("view_3_Controller.$http.get.response.status:" + response.status + "text:" + response.statusText);
+                }
+            }, function (err) {
+                $log.error(err);
+            });
         };
     }]);
+
     /*/控制器*/
 </script>
 <script id="index_view" type="text/ng-template">
