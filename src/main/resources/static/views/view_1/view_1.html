@@ -32,7 +32,7 @@
             <li class="li_style" data-ng-repeat="blog_ in blog">
                 <div><img style="width:100%" data-ng-src="{{blog_.imgSrc}}" alt="{{blog_.imgAlt}}"></div>
                 <div>
-                    <a href="/article/{{blog_.id}}" target="_blank" class="defaut_color text_hide">{{blog_.aTitle}}</a>
+                    <a href="/article/{{blog_.id}}" target="_blank" class="defaut_color text_hide">{{blog_.aTitle| limitTo:28}}...</a>
                     <div class="li_span">
                         <span class="glyphicon glyphicon-calendar"></span>&nbsp;{{blog_.date | date:'yyyy-MM-dd'}}&nbsp;|
                         <span class="glyphicon glyphicon-user"></span>&nbsp;<span class="defaut_color">{{blog_.author}}</span>

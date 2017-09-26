@@ -108,7 +108,6 @@ view_3_Controller.controller('view_3_Controller', ['$scope', '$http', '$log', 'M
 
     $scope.updataTypeByID = function (id) {
         var name = $('#' + id).val();
-        $log.log(name);
         sendRequestAndRefreshView('/adminApi/updataTypeByID?id=' + id + '&name=' + name);
         $window.location.reload();
     };

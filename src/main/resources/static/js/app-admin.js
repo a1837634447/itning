@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('itning_admin', ['admin.service','admin.Controller','blogeditor.Controller','admin.view_3.Controller','ngRoute']);
+var app = angular.module('itning_admin', ['admin.service', 'admin.Controller', 'blogeditor.Controller', 'admin.view_3.Controller', 'ngRoute']);
 /*路由*/
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/blog', {
