@@ -5,7 +5,7 @@
 
 	<groupId>com.ning</groupId>
 	<artifactId>itning</artifactId>
-	<version>0.0.2-RELEASE</version>
+	<version>1.0.0-RELEASE</version>
 	<packaging>jar</packaging>
 
 	<name>itning</name>
