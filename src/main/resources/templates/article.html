@@ -47,7 +47,7 @@
     <div class="container header_size">
         <h1 class="header_logo">
             <a href="/#!/view1"><img class="header_logo_img" style="width: 8em;" th:src="@{/img/logo.png}"
-                                    alt="logo" src=""/></a>
+                                     alt="logo" src=""/></a>
         </h1>
         <div class="header_a hidden-xs">
             <a href="/#!/view_1" class="a_style btn">主页</a>
@@ -78,7 +78,7 @@
             <button class="btn" type="button"
                     id="sidebar_btn">目<br/>录
             </button>
-            <div style="width: 80%" class="markdown-body editormd-preview-container pull-left"
+            <div style="width: 80%" class="markdown-body editormd-preview-container pull-left hidden"
                  id="custom-toc-container"></div>
         </div>
         <div class="article_style pull-left">
@@ -137,29 +137,21 @@
             flowChart: true,  // 默认不解析
             sequenceDiagram: true // 默认不解析
         });
-        var now = true;
-        if ($(window).width() < 768) {
-            now = false;
-            $('#sidebar').animate({
-                right: "-=230px"
-            });
+        var show = false;
+        if ($(window).width() > 768) {
+            $('#custom-toc-container').removeClass('hidden');
         }
         $('#sidebar_btn').click(function () {
-            var px = "";
-            if (now) {
-                px = "-=230px";
-                now = false;
+            if (show) {
+                $('#custom-toc-container').addClass('hidden');
+                show = false;
             } else {
-                px = "+=230px";
-                now = true;
+                $('#custom-toc-container').removeClass('hidden');
+                show = true;
             }
-            $('#sidebar').animate({
-                right: px
-            });
-        });
-    })
-    ;
 
+        });
+    });
 </script>
 <!--<script type="text/javascript">if ($(window).width() > 767) {
     document.write("<" + "script  type='text/javascript' color='242,92,39' opacity='0.7' zIndex='-2' count='100' src='//cdn.staticfile.org/canvas-nest.js/1.0.1/canvas-nest.min.js'></" + "script>");

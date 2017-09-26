@@ -4,11 +4,16 @@
     <div class="container">
         <div class="box_size hidden-sm hidden-xs">
             <ul class='kwicks kwicks-horizontal '>
-                <li><a data-ng-href="{{carousel[0].href}}"><img data-ng-src="{{carousel[0].src}}" alt="{{carousel[0].alt}}"></a></li>
-                <li><a data-ng-href="{{carousel[1].href}}"><img data-ng-src="{{carousel[1].src}}" alt="{{carousel[1].alt}}"></a></li>
-                <li><a data-ng-href="{{carousel[2].href}}"><img data-ng-src="{{carousel[2].src}}" alt="{{carousel[2].alt}}"></a></li>
-                <li><a data-ng-href="{{carousel[3].href}}"><img data-ng-src="{{carousel[3].src}}" alt="{{carousel[3].alt}}"></a></li>
-                <li><a data-ng-href="{{carousel[4].href}}"><img data-ng-src="{{carousel[4].src}}" alt="{{carousel[4].alt}}"></a></li>
+                <li><a data-ng-href="{{carousel[0].href}}"><img data-ng-src="{{carousel[0].src}}"
+                                                                alt="{{carousel[0].alt}}"></a></li>
+                <li><a data-ng-href="{{carousel[1].href}}"><img data-ng-src="{{carousel[1].src}}"
+                                                                alt="{{carousel[1].alt}}"></a></li>
+                <li><a data-ng-href="{{carousel[2].href}}"><img data-ng-src="{{carousel[2].src}}"
+                                                                alt="{{carousel[2].alt}}"></a></li>
+                <li><a data-ng-href="{{carousel[3].href}}"><img data-ng-src="{{carousel[3].src}}"
+                                                                alt="{{carousel[3].alt}}"></a></li>
+                <li><a data-ng-href="{{carousel[4].href}}"><img data-ng-src="{{carousel[4].src}}"
+                                                                alt="{{carousel[4].alt}}"></a></li>
             </ul>
         </div>
         <script type='text/javascript'>
@@ -32,14 +37,12 @@
             <li class="li_style" data-ng-repeat="blog_ in blog">
                 <div><img style="width:100%" data-ng-src="{{blog_.imgSrc}}" alt="{{blog_.imgAlt}}"></div>
                 <div>
-                    <a href="/article/{{blog_.id}}" target="_blank" class="defaut_color text_hide">{{blog_.aTitle| limitTo:28}}...</a>
                     <div class="li_span">
                         <span class="glyphicon glyphicon-calendar"></span>&nbsp;{{blog_.date | date:'yyyy-MM-dd'}}&nbsp;|
-                        <span class="glyphicon glyphicon-user"></span>&nbsp;<span class="defaut_color">{{blog_.author}}</span>
+                        <span class="glyphicon glyphicon-user"></span>&nbsp;<span
+                            class="defaut_color">{{blog_.author}}</span>
                     </div>
-                </div>
-                <div>
-                    <p>{{blog_.md | limitTo:100}}......</p>
+                    <a href="/article/{{blog_.id}}" target="_blank" class="defaut_color text_hide">{{blog_.aTitle}}</a>
                 </div>
             </li>
         </ul>

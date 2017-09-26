@@ -53,10 +53,6 @@
     margin-bottom: 1em;
 }
 
-.li_style > div > p {
-    color: #50504d;
-}
-
 .li_span {
     display: block;
     margin-top: 0.5em;
@@ -66,6 +62,5 @@
 .text_hide {
     width: 245px;
     overflow: hidden;
-    white-space: nowrap;
     text-overflow: ellipsis;
 }

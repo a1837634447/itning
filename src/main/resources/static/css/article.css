@@ -107,7 +107,7 @@ a:hover {
     .article_style {
         width: 100%;
         padding-top: 6px;
-        color: #ffffff;
+        color: #333;
     }
 }
 @media (min-width: 767px) {
@@ -188,14 +188,13 @@ footer {
 #sidebar {
     position: fixed;
     top: 25%;
-    right: 40px;
+    right: 1%;
     z-index: 999;
 }
 #sidebar_btn{
     background-color: #f25c27;
     color: white;
-    float: left;
-    width: 20%;
+    float: right;
     position: relative;
     top: 5em;
 }

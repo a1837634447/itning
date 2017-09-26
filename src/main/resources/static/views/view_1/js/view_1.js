@@ -12,7 +12,7 @@ view_1_Controller.controller('view_1_Controller', ['$scope', '$http', function (
     }, function (err) {
         $log.error(err);
     });
-    $http.get('/getBlogData?size=4').then(function (response) {
+    $http.get('/getBlogData?size=8').then(function (response) {
         if (response.status === 200) {
             $scope.blog = response.data.content;
         } else {
