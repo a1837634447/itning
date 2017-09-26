@@ -57,6 +57,60 @@ public class View_3_ServiceImpl implements View_3_Service {
     }
 
     /**
+     * 保存类别方法
+     *
+     * @param name 类别名
+     * @return --void
+     * @author : ning
+     * @date :   2017/9/26
+     **/
+    @Override
+    public void saveType(String name) {
+        String uuid = UUID.randomUUID().toString().replaceAll("\\-", "");
+        Type type = new Type();
+        type.setId(uuid);
+        type.setName(name);
+        typeDao.saveAndFlush(type);
+    }
+
+    /**
+     * 根据类别ID删除类别
+     *
+     * @param id 类别ID
+     * @return --void
+     * @author : ning
+     * @date :   2017/9/26
+     **/
+    @Override
+    public void deleteTypeByID(String id) {
+        if (typeDao.exists(id)) {
+            List<Blog> list = blogDao.findByTypeOrderByDateDesc(typeDao.getOne(id));
+            for (Blog blog : list) {
+                this.deleteBlogByID(blog.getId());
+            }
+            typeDao.delete(id);
+        }
+    }
+
+    /**
+     * 根据类别ID 修改Type
+     *
+     * @param id   ID
+     * @param name 类别名
+     * @return --void
+     * @author : ning
+     * @date :   2017/9/26
+     **/
+    @Override
+    public void updataTypeByID(String id, String name) {
+        if (typeDao.exists(id)) {
+            Type type = typeDao.getOne(id);
+            type.setName(name);
+            typeDao.saveAndFlush(type);
+        }
+    }
+
+    /**
      * 获取博客归档实体方法
      *
      * @return --java.util.List<com.ning.itning.entity.view_3.Archiving>

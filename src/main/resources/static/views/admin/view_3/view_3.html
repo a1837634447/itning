@@ -5,8 +5,18 @@
             <td>操作</td>
         </tr>
         <tr data-ng-repeat="type_ in type">
-            <td><p>{{type_.name}}</p></td>
             <td>
+                <p data-ng-show="showID!==type_.id">{{type_.name}}</p>
+                <form data-ng-show="showID===type_.id" ng-submit="updataTypeByID(type_.id)">
+                    <label>
+                        <input type="text" value="{{type_.name}}" id="{{type_.id}}">
+                    </label>
+                    <button type="submit" class="btn btn-info">保存</button>
+                </form>
+            </td>
+            <td>
+                <button data-ng-show="showID!==type_.id" class="btn btn-info" data-ng-click="changeShowID(type_.id)">编辑</button>
+                <button data-ng-show="showID===type_.id" class="btn btn-info" data-ng-click="changeShowID(-1)">取消</button>
                 <button class="btn btn-danger" data-ng-click="deleteType(type_.id)">删除</button>
             </td>
         </tr>

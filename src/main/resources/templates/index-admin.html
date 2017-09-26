@@ -176,7 +176,6 @@
                     };
                 //发送post请求，获取数据
                 $http.post(url, data, postCfg).then(function (reponse) {
-                    $log.log(reponse);
                     if (reponse.data[0] === "success") {
                         $window.location.reload();
                     }
@@ -194,6 +193,7 @@
         $scope.blog = [];
         $scope.typeID = "";
         $scope.newType = "";
+        $scope.showID = -1;
         var url = "";
         getBlogType();
         $scope.$watch('typeID', function (now, old) {
@@ -265,14 +265,22 @@
             });
         };
         $scope.addType = function () {
-            $log.log($scope.newType);
             if ($scope.newType !== "") {
                 sendRequestAndRefreshView('/adminApi/addType?name=' + $scope.newType);
             }
         };
         $scope.deleteType = function (id) {
-            $log.log(id);
             sendRequestAndRefreshView('/adminApi/deleteTypeByID?id=' + id);
+        };
+
+        $scope.updataTypeByID = function (id) {
+            var name = $('#'+id).val();
+            $log.log(name);
+            sendRequestAndRefreshView('/adminApi/updataTypeByID?id=' + id + '&name=' + name);
+            $window.location.reload();
+        };
+        $scope.changeShowID = function (id) {
+            $scope.showID = id;
         };
     }]);
 

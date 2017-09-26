@@ -20,8 +20,6 @@ public class Type implements Serializable {
     private String id;
     @Column(name = "name")
     private String name;
-    @Column(name = "href")
-    private String href;
 
     public String getId() {
         return id;
@@ -37,13 +35,5 @@ public class Type implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getHref() {
-        return href;
-    }
-
-    public void setHref(String href) {
-        this.href = href;
     }
 }

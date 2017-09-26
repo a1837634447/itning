@@ -20,6 +20,12 @@ import java.util.List;
 public interface View_3_Service {
     List<Type> getTypeEntity();
 
+    void saveType(String name);
+
+    void deleteTypeByID(String id);
+
+    void updataTypeByID(String id, String name);
+
     List<Archiving> getArchivingEntity();
 
     Page<Blog> getBlogEntity(Integer page, Integer size);

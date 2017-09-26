@@ -86,27 +86,50 @@ public class AdminController {
     }
 
     /**
-     *
-     * @author : ning
      * @param name 名称
-     * @return  --java.util.List<java.lang.String>
+     * @return --java.util.List<java.lang.String>
+     * @author : ning
      * @date :   2017/9/26
-    **/
+     **/
     @RequestMapping("addType")
     @ResponseBody
-    public List<String> addType(String name){
-        // TODO 接口实现
-        System.out.println(name);
+    public List<String> addType(String name) {
+        view_3_service.saveType(name);
         List<String> list = new ArrayList<>();
         list.add("success");
         return list;
     }
 
+    /**
+     * 删除类别 根据ID
+     * @author : ning
+     * @param id 要删除的ID
+     * @return  --java.util.List<java.lang.String>
+     * @date :   2017/9/26
+    **/
     @RequestMapping("deleteTypeByID")
     @ResponseBody
-    public List<String> deleteTypeByID(String id){
-        // TODO 接口实现
+    public List<String> deleteTypeByID(String id) {
         System.out.println(id);
+        view_3_service.deleteTypeByID(id);
+        List<String> list = new ArrayList<>();
+        list.add("success");
+        return list;
+    }
+
+    /**
+     * 修改类别 根据ID
+     * @author : ning
+     * @param id 类别ID
+     * @param name 类别名
+     * @return  --java.util.List<java.lang.String>
+     * @date :   2017/9/26
+    **/
+    @RequestMapping("updataTypeByID")
+    @ResponseBody
+    public List<String> updataTypeByID(String id, String name) {
+        System.out.println(id + name);
+        view_3_service.updataTypeByID(id, name);
         List<String> list = new ArrayList<>();
         list.add("success");
         return list;
