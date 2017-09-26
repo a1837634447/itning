@@ -1,3 +1,12 @@
+<div class="alert alert-danger alert-dismissible fade in hidden" role="alert" id="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="取消"><span aria-hidden="true">×</span></button>
+    <h4>你确定删除吗？</h4>
+    <p>删除操作不可逆。</p>
+    <p>
+        <button type="button" class="btn btn-danger" data-ng-click="del_true()">删除</button>
+        <button type="button" class="btn btn-default" data-dismiss="alert" aria-label="取消">取消</button>
+    </p>
+</div>
 <div class="table-responsive">
     <table class="table table-hover text-center">
         <tr>
@@ -17,7 +26,7 @@
             <td>
                 <button data-ng-show="showID!==type_.id" class="btn btn-info" data-ng-click="changeShowID(type_.id)">编辑</button>
                 <button data-ng-show="showID===type_.id" class="btn btn-info" data-ng-click="changeShowID(-1)">取消</button>
-                <button class="btn btn-danger" data-ng-click="deleteType(type_.id)">删除</button>
+                <button class="btn btn-danger" data-ng-click="del('type',type_.id)">删除</button>
             </td>
         </tr>
         <tr>
@@ -51,7 +60,7 @@
             <td>
                 <button style="width: 48.5%" class="btn btn-primary" data-ng-click="updataBlogByID(blog_.id)">编辑
                 </button>
-                <button style="width: 48.5%" class="btn btn-danger" data-ng-click="delBlogByID(blog_.id)">删除</button>
+                <button style="width: 48.5%" class="btn btn-danger" data-ng-click="del('blog',blog_.id)">删除</button>
             </td>
         </tr>
     </table>

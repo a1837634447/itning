@@ -114,12 +114,25 @@
     /*服务*/
     app.service('MainService', [function () {
         var blog = [];
+        var delID = -1;
+        var delWhat = "";
         this.getblogData = function () {
             return blog;
         };
         this.setblogData = function (blog_) {
             blog = blog_;
         };
+        this.setWhatID = function (what, id) {
+            delID = id;
+            delWhat = what;
+        };
+        this.getDelWhat = function () {
+            return delWhat;
+        };
+        this.getDelID = function () {
+            return delID;
+        };
+
     }]);
     /*/服务*/
 
@@ -253,7 +266,26 @@
                 }
             }
         };
-        $scope.delBlogByID = function (id) {
+        $scope.del = function (what, id) {
+            $("#alert").removeClass("hidden");
+            MainService.setWhatID(what, id);
+        };
+        $scope.del_true = function () {
+            var what = MainService.getDelWhat();
+            var id = MainService.getDelID();
+            switch (what) {
+                case "blog":
+                    delBlogByID(id);
+                    $("#alert").addClass("hidden");
+                    break;
+                case "type":
+                    deleteType(id);
+                    $("#alert").addClass("hidden");
+                    break;
+            }
+        };
+
+        function delBlogByID(id) {
             $http.get('/adminApi/deleteBlogByID?id=' + id).then(function (response) {
                 if (response.status === 200) {
                     getBlogData(url);
@@ -263,18 +295,20 @@
             }, function (err) {
                 $log.error(err);
             });
-        };
+        }
+
         $scope.addType = function () {
             if ($scope.newType !== "") {
                 sendRequestAndRefreshView('/adminApi/addType?name=' + $scope.newType);
             }
         };
-        $scope.deleteType = function (id) {
+
+        function deleteType(id) {
             sendRequestAndRefreshView('/adminApi/deleteTypeByID?id=' + id);
-        };
+        }
 
         $scope.updataTypeByID = function (id) {
-            var name = $('#'+id).val();
+            var name = $('#' + id).val();
             $log.log(name);
             sendRequestAndRefreshView('/adminApi/updataTypeByID?id=' + id + '&name=' + name);
             $window.location.reload();
