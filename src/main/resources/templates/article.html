@@ -6,14 +6,14 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0"/>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
     <meta name="description" th:content="${'Ning!是一个分享技术和个人见解的网站...'+blog.aTitle}"/>
     <meta name="keywords" content="Ning, 个人网站, JAVA, 前端"/>
     <meta name="author" content="Ning"/>
+    <link th:href="@{/favicon.ico}" rel="icon" type="image/x-icon"/>
+    <link th:href="@{/favicon.ico}" rel="shortcut icon" type="image/x-icon"/>
     <link th:href="@{/lib_web/bootstrap/css/bootstrap.css}" rel="stylesheet"/>
     <link th:href="@{/css/article.css}" rel="stylesheet"/>
-    <link rel="stylesheet" th:href="@{/lib_web/editormd/css/editormd.preview.css}"/>
+    <link th:href="@{/lib_web/editormd/css/editormd.preview.css}" rel="stylesheet"/>
     <!--[if lt IE 9]>
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
@@ -47,7 +47,7 @@
     <div class="container header_size">
         <h1 class="header_logo">
             <a href="#!/view1"><img class="header_logo_img" style="width: 8em;" th:src="@{/img/logo.png}"
-                                    alt="logo"/></a>
+                                    alt="logo" src=""/></a>
         </h1>
         <div class="header_a hidden-xs">
             <a href="/#!/view_1" class="a_style btn">主页</a>
