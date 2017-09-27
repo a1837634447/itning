@@ -10,7 +10,7 @@
     <meta name="author" content="Ning"/>
     <link th:href="@{/favicon.ico}" rel="icon" type="image/x-icon"/>
     <link th:href="@{/favicon.ico}" rel="shortcut icon" type="image/x-icon"/>
-    <link th:href="@{/lib_web/bootstrap/css/bootstrap.css}" rel="stylesheet"/>
+    <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
     <link th:href="@{/css/main.css}" rel="stylesheet"/>
     <!--[if lt IE 9]>
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -94,9 +94,11 @@
         </div>
     </div>
 </footer>
-<div th:include="/common/common_js::onloadJB"></div>
-<div th:include="/common/common_js::onloadNJ"></div>
-<script type='text/javascript' th:src="@{/lib_web/jquery.kwicks/jquery.kwicks.js}"></script>
+<script type='text/javascript' src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="//cdn.staticfile.org/angular.js/1.6.6/angular.min.js"></script>
+<script type="text/javascript" src="//cdn.staticfile.org/angular.js/1.6.6/angular-route.min.js"></script>
+<script type='text/javascript' th:src="@{/lib_web/jquery.kwicks/jquery.kwicks.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/main.js}"></script>
 <script type="text/javascript" th:src="@{/js/app.js}"></script>
 <script type="text/javascript" th:src="@{/js/app-service.js}"></script>
@@ -106,8 +108,8 @@
 <script type="text/javascript" th:src="@{/views/view_3/js/view_3.js}"></script>
 <script type="text/javascript" th:src="@{/views/view_4/js/view_4.js}"></script>
 <script type="text/javascript" th:src="@{/views/view_5/js/view_5.js}"></script>
-<!--<script type="text/javascript">if ($(window).width() > 767) {
+<script type="text/javascript">if ($(window).width() > 767) {
     document.write("<" + "script  type='text/javascript' color='242,92,39' opacity='0.7' zIndex='-2' count='100' src='//cdn.staticfile.org/canvas-nest.js/1.0.1/canvas-nest.min.js'></" + "script>");
-}</script>-->
+}</script>
 </body>
 </html>

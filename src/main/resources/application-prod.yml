@@ -19,7 +19,7 @@ spring:
       enabled: false
 security:
   user:
-    name: admin
-    password: ning64486shan
+    name: 用户名
+    password: 密码
 logging:
   level: error

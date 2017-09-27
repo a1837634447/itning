@@ -6,7 +6,7 @@
 	<groupId>com.ning</groupId>
 	<artifactId>itning</artifactId>
 	<version>1.0.0-RELEASE</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>itning</name>
 	<description>itning.cn</description>
@@ -45,7 +45,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -61,7 +60,20 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+
+    </dependencies>
 
 	<build>
 		<plugins>
