@@ -28,3 +28,8 @@ nbdist/
 mvnw
 mvnw.cmd
 src/main/resources/static/lib_web/angular/angular.js
+META-INF/
+itning.properties
+itning.xml
+module_itning.xml
+out/
