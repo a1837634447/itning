@@ -13,10 +13,6 @@ img, input, button {
     outline-style: none;
 }
 
-ul, ol {
-    list-style: none;
-}
-
 select, input {
     vertical-align: middle;
 }
