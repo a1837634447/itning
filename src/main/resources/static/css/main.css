@@ -109,7 +109,8 @@ a:hover {
 .defaut_background_color {
     background-color: #F25C27;
 }
-.defaut_color{
+
+.defaut_color {
     color: #F25C27;
 }
 
@@ -133,7 +134,7 @@ a:hover {
     position: relative;
 }
 
-.a_style{
+.a_style {
     margin-right: -0.5em;
     border-radius: 0;
     padding: 30px;

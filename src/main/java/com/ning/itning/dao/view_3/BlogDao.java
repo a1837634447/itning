@@ -8,11 +8,12 @@ import java.util.List;
 
 /**
  * Blog数据Dao层
- * @package_name : com.ning.itning.dao.view_3
+ *
  * @author : ning
  * @version : 1.0.0
+ * @package_name : com.ning.itning.dao.view_3
  * @date :   2017/9/23
-**/
-public interface BlogDao extends JpaRepository<Blog,String> {
+ **/
+public interface BlogDao extends JpaRepository<Blog, String> {
     List<Blog> findByTypeOrderByDateDesc(Type type);
 }

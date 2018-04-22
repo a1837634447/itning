@@ -11,9 +11,9 @@ import java.util.UUID;
 @SpringBootTest
 public class ItningApplicationTests {
 
-	@Test
-	public void contextLoads() {
+    @Test
+    public void contextLoads() {
 
-	}
+    }
 
 }

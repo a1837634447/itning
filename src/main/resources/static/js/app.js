@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('itning', ['main.Service', 'main.Controller','view_1.Controller','view_2.Controller','view_3.Controller','view_4.Controller','view_5.Controller', 'ngRoute']);
+var app = angular.module('itning', ['main.Service', 'main.Controller', 'view_1.Controller', 'view_2.Controller', 'view_3.Controller', 'view_4.Controller', 'view_5.Controller', 'ngRoute']);
 /*路由*/
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/view_1', {

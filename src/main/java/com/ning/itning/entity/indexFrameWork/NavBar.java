@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 /**
  * JAVA BEAN 导航条实体 用于封装页面框架数据
+ *
  * @author : ning
  * @version : 1.0.0
  * @package_name : com.ning.itning.entity

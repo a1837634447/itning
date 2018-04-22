@@ -5,11 +5,12 @@ import java.util.List;
 
 /**
  * JAVA BEAN 用于封装主页框架数据
- * @package_name : com.ning.itning.entity
+ *
  * @author : ning
  * @version : 1.0.0
+ * @package_name : com.ning.itning.entity
  * @date :   2017/9/22
-**/
+ **/
 public class Index implements Serializable {
     private List<NavBar> navbarList;
     private List<String> viewTitle;

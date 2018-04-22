@@ -8,11 +8,12 @@ import java.io.Serializable;
 
 /**
  * JAVA BEAN 页面导航栏实体 用于封装页面框架数据
- * @package_name : com.ning.itning.entity.indexFrameWork
+ *
  * @author : ning
  * @version : 1.0.0
+ * @package_name : com.ning.itning.entity.indexFrameWork
  * @date :   2017/9/22
-**/
+ **/
 @Entity
 @Table(name = "index_title")
 public class Title implements Serializable {

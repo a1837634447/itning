@@ -24,8 +24,11 @@
                 </form>
             </td>
             <td>
-                <button data-ng-show="showID!==type_.id" class="btn btn-info" data-ng-click="changeShowID(type_.id)">编辑</button>
-                <button data-ng-show="showID===type_.id" class="btn btn-info" data-ng-click="changeShowID(-1)">取消</button>
+                <button data-ng-show="showID!==type_.id" class="btn btn-info" data-ng-click="changeShowID(type_.id)">
+                    编辑
+                </button>
+                <button data-ng-show="showID===type_.id" class="btn btn-info" data-ng-click="changeShowID(-1)">取消
+                </button>
                 <button class="btn btn-danger" data-ng-click="del('type',type_.id)">删除</button>
             </td>
         </tr>

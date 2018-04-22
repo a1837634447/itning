@@ -80,7 +80,8 @@
                 <div class="error_div">
                     <h1 class="error_h1 text-center">Oopss!</h1>
                     <!--/*@thymesVar id="exception" type="org.springframework.web.servlet.ModelAndView"*/-->
-                    <h2 class="error_h2 text-center" th:text="${exception!=null?(exception.message):'404 page not found'}"></h2>
+                    <h2 class="error_h2 text-center"
+                        th:text="${exception!=null?(exception.message):'404 page not found'}"></h2>
                 </div>
             </div>
         </div>

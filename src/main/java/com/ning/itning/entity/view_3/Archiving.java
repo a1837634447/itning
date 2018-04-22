@@ -9,14 +9,15 @@ import java.util.Date;
 
 /**
  * 博客归档模块实体类
- * @package_name : com.ning.itning.entity.view_3
+ *
  * @author : ning
  * @version : 1.0.0
+ * @package_name : com.ning.itning.entity.view_3
  * @date :   2017/9/22
-**/
+ **/
 @Entity
 @Table(name = "archiving")
-public class Archiving implements Serializable{
+public class Archiving implements Serializable {
     @Id
     @Column(name = "id")
     private String id;

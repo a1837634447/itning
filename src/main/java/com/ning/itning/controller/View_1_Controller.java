@@ -26,12 +26,14 @@ public class View_1_Controller {
     public View_1_Controller(View_1_Service view_1_service) {
         this.view_1_service = view_1_service;
     }
+
     /**
      * 获取轮播图数据方法
+     *
+     * @return 轮播图数据JSON--java.util.List<com.ning.itning.entity.view_1.Carousel>
      * @author : ning
-     * @return  轮播图数据JSON--java.util.List<com.ning.itning.entity.view_1.Carousel>
      * @date :   2017/9/22
-    **/
+     **/
     @RequestMapping("/getCarouselData")
     public List<Carousel> getCarouselData() {
         return view_1_service.getCarouselData();

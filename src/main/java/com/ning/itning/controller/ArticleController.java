@@ -17,6 +17,7 @@ import java.util.UUID;
 
 /**
  * Blog 文章控制层
+ *
  * @author : ning
  * @version : 1.0.0
  * @package_name : com.ning.itning.controller
@@ -34,16 +35,17 @@ public class ArticleController {
 
     /**
      * 根据ID获取文章实体
-     * @author : ning
-     * @param id, 文章ID
+     *
+     * @param id,   文章ID
      * @param model org.springframework.ui.Model
-     * @return  --java.lang.String
+     * @return --java.lang.String
+     * @author : ning
      * @date :   2017/9/25
-    **/
+     **/
     @RequestMapping("/article/{id}")
     public String getArticleByID(@PathVariable("id") String id, Model model) {
         Blog blogByID = view_3_service.getBlogByID(id);
-        model.addAttribute("blog",blogByID);
+        model.addAttribute("blog", blogByID);
         return "article";
     }
 }

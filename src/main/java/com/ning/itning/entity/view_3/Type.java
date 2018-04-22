@@ -5,13 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
+
 /**
  * 博客类别模块实体类
- * @package_name : com.ning.itning.entity.view_3
+ *
  * @author : ning
  * @version : 1.0.0
+ * @package_name : com.ning.itning.entity.view_3
  * @date :   2017/9/22
-**/
+ **/
 @Entity
 @Table(name = "type")
 public class Type implements Serializable {

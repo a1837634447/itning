@@ -102,11 +102,12 @@ public class AdminController {
 
     /**
      * 删除类别 根据ID
-     * @author : ning
+     *
      * @param id 要删除的ID
-     * @return  --java.util.List<java.lang.String>
+     * @return --java.util.List<java.lang.String>
+     * @author : ning
      * @date :   2017/9/26
-    **/
+     **/
     @RequestMapping("deleteTypeByID")
     @ResponseBody
     public List<String> deleteTypeByID(String id) {
@@ -119,12 +120,13 @@ public class AdminController {
 
     /**
      * 修改类别 根据ID
-     * @author : ning
-     * @param id 类别ID
+     *
+     * @param id   类别ID
      * @param name 类别名
-     * @return  --java.util.List<java.lang.String>
+     * @return --java.util.List<java.lang.String>
+     * @author : ning
      * @date :   2017/9/26
-    **/
+     **/
     @RequestMapping("updataTypeByID")
     @ResponseBody
     public List<String> updataTypeByID(String id, String name) {

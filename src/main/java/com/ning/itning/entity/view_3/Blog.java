@@ -9,14 +9,15 @@ import java.util.Date;
 
 /**
  * Blog实体
- * @package_name : com.ning.itning.entity.view_3
+ *
  * @author : ning
  * @version : 1.0.0
+ * @package_name : com.ning.itning.entity.view_3
  * @date :   2017/9/22
-**/
+ **/
 @Entity
 @Table(name = "blog")
-public class Blog implements Serializable{
+public class Blog implements Serializable {
     @Id
     @Column(name = "id")
     private String id;
@@ -32,8 +33,8 @@ public class Blog implements Serializable{
     private Date date;
     @Column(name = "author")
     private String author;
-    @OneToOne(cascade=CascadeType.PERSIST)//Blog是关系的维护端
-    @JoinColumn(name="type")//指定外键的名称
+    @OneToOne(cascade = CascadeType.PERSIST)//Blog是关系的维护端
+    @JoinColumn(name = "type")//指定外键的名称
     @Fetch(FetchMode.JOIN)//会使用left join查询,只产生一条语句
     private Type type;
     @Column(name = "md")

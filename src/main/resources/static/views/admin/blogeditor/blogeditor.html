@@ -5,7 +5,7 @@
         <input type="text" name="author" class="form-control" data-ng-model="author" placeholder="author"/>
         <label>
             <select name="type" class="form-control" data-ng-model="typeID">
-                <option data-ng-repeat="type_ in type"  value="{{type_.id}}">{{type_.name}}</option>
+                <option data-ng-repeat="type_ in type" value="{{type_.id}}">{{type_.name}}</option>
             </select>
         </label>
         {{typeID}}
@@ -34,7 +34,7 @@
         width: "100%",
         height: 650,
         path: "./lib_web/editormd/lib/",
-        emoji:false,
+        emoji: false,
         saveHTMLToTextarea: true
     });
 </script>

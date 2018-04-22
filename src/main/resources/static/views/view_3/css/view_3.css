@@ -83,12 +83,15 @@ a:hover {
 .title_style {
     padding-bottom: 6px;
 }
-.title_style a{
+
+.title_style a {
     color: #F25C27;
 }
-.title_style a:hover{
+
+.title_style a:hover {
     color: #f20722;
 }
+
 .article_padding {
     padding: 20px 5px;
 }

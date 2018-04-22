@@ -28,6 +28,7 @@ public class IndexFrameWork {
 
     /**
      * 进入首页方法
+     *
      * @return 首页HTML名--java.lang.String
      * @author : ning
      * @date :   2017/9/21
@@ -36,12 +37,14 @@ public class IndexFrameWork {
     public String index() {
         return "index";
     }
+
     /**
      * 框架数据获取方法
+     *
+     * @return JSON数据--com.ning.itning.entity.indexFrameWork.Index
      * @author : ning
-     * @return  JSON数据--com.ning.itning.entity.indexFrameWork.Index
      * @date :   2017/9/22
-    **/
+     **/
     @RequestMapping("/getIndexFrameWorkData")
     @ResponseBody
     public Index getIndexFrameWorkData() {
